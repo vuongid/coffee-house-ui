@@ -1,0 +1,56 @@
+@import 'normalize.css';
+
+// Fonts embedded
+@font-face {
+    font-family: 'Lato';
+    src: url('../../assets/fonts/lato-regular.ttf');
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: 'SF Pro Display';
+    src: url('../../assets/fonts/sfprodisplay-semibold.ttf');
+    font-weight: 600;
+}
+
+@font-face {
+    font-family: 'SF Pro Text';
+    src: url('../../assets/fonts/sfprotext-regular.ttf');
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: 'SF Pro Text';
+    src: url('../../assets/fonts/lato-regular.ttf');
+    font-weight: 600;
+}
+
+:root {
+    // Fonts
+    --font-family: 'SF Pro Text', sans-serif;
+    --font-sf-pro-display: 'SF Pro Display', sans-serif;
+    --font-lato: 'Lato', sans-serif;
+
+    //Color
+    --text-color: rgba(0, 0, 0, 0.6);
+    --color-black: #000;
+    --color-white: #fff;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 62.5%;
+}
+
+body {
+    font-family: var(--font-family);
+    font-size: 1.4rem;
+    line-height: 1.4;
+    text-rendering: optimizeSpeed;
+    background-color: var(--color-white);
+}
