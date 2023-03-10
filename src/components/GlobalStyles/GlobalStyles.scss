@@ -21,7 +21,7 @@
 
 @font-face {
     font-family: 'SF Pro Text';
-    src: url('../../assets/fonts/lato-regular.ttf');
+    src: url('../../assets/fonts/sfprotext-semibold.ttf');
     font-weight: 600;
 }
 
@@ -32,6 +32,7 @@
     --font-lato: 'Lato', sans-serif;
 
     //Color
+    --primary: #e57905;
     --text-color: rgba(0, 0, 0, 0.6);
     --color-black: #000;
     --color-white: #fff;
@@ -53,4 +54,9 @@ body {
     line-height: 1.4;
     text-rendering: optimizeSpeed;
     background-color: var(--color-white);
+}
+
+a {
+    color: var(--color-black);
+    text-decoration: none;
 }
