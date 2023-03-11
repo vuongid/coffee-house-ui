@@ -17,9 +17,6 @@
     display: flex;
     align-items: center;
     padding: 19px 16px;
-    &.active {
-        color: red;
-    }
 }
 
 .nav-link.active {
@@ -59,6 +56,7 @@
     left: 0;
     right: 0;
     padding: 24px 15.4% 32px;
+    background-color: rgba(255, 255, 255, 0.95);
 }
 
 .drop-menu-item {
