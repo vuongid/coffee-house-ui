@@ -9,8 +9,10 @@ import Cart from '~/pages/Cart';
 
 const publicRoutes = [
     { path: '/', component: Home },
-    { path: '/menu', component: Menu },
+    { path: '/menu', component: Menu, layout: SidebarLayout },
+    { path: '/menu/:slug', component: Menu, layout: SidebarLayout },
     { path: '/product', component: Product, layout: SidebarLayout },
+    { path: '/product/:slug', component: Product, layout: SidebarLayout },
     { path: '/blog', component: Blog },
     { path: '/store', component: Store },
     { path: '/hiring', component: Hiring },

@@ -1,0 +1,34 @@
+.sticky {
+    position: sticky;
+    top: 2px;
+}
+.menu {
+    padding-left: 44px;
+}
+
+.item {
+    display: flex;
+    align-items: center;
+    color: var(--text-color);
+    padding: 6px 0;
+}
+
+.active {
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: #ea8025;
+}
+
+.icon {
+    display: none;
+}
+
+.active {
+    .icon {
+        display: flex;
+        margin-left: -26px;
+    }
+    .title {
+        margin-left: 10px;
+    }
+}
