@@ -6,13 +6,15 @@ import styles from './Button.module.scss';
 
 const cx = classNames.bind(styles);
 
-function Button({ children, to, href, leftIcon, rightIcon, className, ...passProps }) {
+function Button({ children, to, href, primary, full, leftIcon, rightIcon, className, ...passProps }) {
     let Comp = 'button';
     const _props = {
         ...passProps,
     };
     const classes = cx('wrapper', {
         [className]: className,
+        primary,
+        full,
     });
 
     if (to) {

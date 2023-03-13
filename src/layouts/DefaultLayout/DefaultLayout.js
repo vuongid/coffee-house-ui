@@ -10,7 +10,9 @@ function DefaultLayout({ children }) {
     return (
         <div>
             <Header />
-            <div className={cx('container')}>{children}</div>
+            <div className="grid wide">
+                <div className={cx('container')}>{children}</div>
+            </div>
             <Footer />
         </div>
     );

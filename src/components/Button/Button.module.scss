@@ -15,8 +15,30 @@
     user-select: none;
 }
 
+.primary {
+    color: white;
+    background-color: var(--primary);
+
+    &:hover {
+        background-color: rgb(229, 121, 5, 0.9);
+    }
+
+    &:active {
+        background-color: rgb(229, 121, 5, 0.7);
+    }
+}
+
+.full {
+    width: 100%;
+    padding: 12px 0;
+}
+
+.icon + .title,
+.title + .icon {
+    margin-left: 8px;
+}
+
 .icon {
-    display: inline-block;
-    text-align: center;
-    width: 24px;
+    display: flex;
+    align-items: center;
 }
