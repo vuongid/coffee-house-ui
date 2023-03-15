@@ -10,9 +10,13 @@ function Menu({ menu }) {
     return (
         <div className={cx('menu')}>
             {menu.map((item, index) => (
-                <NavLink to={item.to} key={index} className={(nav) => cx('item', { active: nav.isActive })}>
+                <NavLink
+                    to={`/menu/${item.slug}`}
+                    key={index}
+                    className={(nav) => cx('item', { active: nav.isActive })}
+                >
                     <span className={cx('icon')}>{coffeeIcon}</span>
-                    <span className={cx('title')}>{item.title}</span>
+                    <span className={cx('title')}>{item.name}</span>
                 </NavLink>
             ))}
         </div>

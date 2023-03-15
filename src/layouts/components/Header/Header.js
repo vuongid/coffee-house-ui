@@ -5,7 +5,7 @@ import styles from './Header.module.scss';
 import images from '~/assets/images';
 import Navbar from './Navbar';
 import { cartIcon, userIcon, barsIcon, closeIcon } from '~/components/Icons';
-import { useState } from 'react';
+import { memo, useState } from 'react';
 
 const cx = classNames.bind(styles);
 const navbar = [
@@ -13,15 +13,12 @@ const navbar = [
         title: 'Menu',
         to: '/menu',
         sub: [
-            { title: 'Tất cả' },
-            { title: 'Món Tết' },
-            { title: 'Cà Phê' },
-            { title: 'CloudFee' },
-            { title: 'CloudTea' },
-            { title: 'Trà' },
-            { title: 'Hi-Tea Heathy' },
-            { title: 'Bánh & Snack' },
-            { title: 'Tại Nhà' },
+            { title: 'Cà phê', to: '/menu/ca-phe' },
+            { title: 'CloudFee', to: '/menu/cloudfee' },
+            { title: 'CloudTea', to: '/menu/cloudtea' },
+            { title: 'Hi-Tea Heathy', to: '/menu/hi-tea-healthy' },
+            { title: 'Trà Trái Cây - Trà Sữa', to: '/menu/tra-trai-cay-tra-sua' },
+            { title: 'Tại Nhà', to: '/menu/thuong-thuc-tai-nha' },
         ],
     },
     {
@@ -108,4 +105,4 @@ function Header() {
         </div>
     );
 }
-export default Header;
+export default memo(Header);

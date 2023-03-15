@@ -24,7 +24,9 @@ function Navbar({ children, to, sub, icon, qty }) {
                     {sub.map((sub, index) => {
                         return (
                             <div key={index} className={cx('drop-menu-item')}>
-                                <NavLink className={cx('drop-link')}>{sub.title}</NavLink>
+                                <NavLink to={sub.to} className={cx('drop-link')}>
+                                    {sub.title}
+                                </NavLink>
                             </div>
                         );
                     })}

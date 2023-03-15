@@ -15,6 +15,7 @@
 }
 
 .info {
+    user-select: none;
 }
 
 .info-title {
@@ -65,6 +66,11 @@
     &:active {
         color: rgb(229, 121, 5, 0.7);
     }
+}
+
+.qty-icon.disabled {
+    color: #e4e4e4;
+    cursor: default;
 }
 
 .description {
