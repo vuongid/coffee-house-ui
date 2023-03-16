@@ -43,7 +43,6 @@ const navbar = [
 const navbarUser = [
     {
         icon: cartIcon,
-        qty: 6,
         to: '/cart',
     },
     {
@@ -53,8 +52,10 @@ const navbarUser = [
     },
 ];
 
-function Header() {
+function Header({ totalQuantity }) {
     const [showNavRight, setShowNavRight] = useState(false);
+
+    navbarUser[0].qty = totalQuantity;
 
     return (
         <div className={cx('wrapper')}>

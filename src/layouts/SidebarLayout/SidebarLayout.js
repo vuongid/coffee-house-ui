@@ -4,13 +4,19 @@ import classNames from 'classnames/bind';
 import Footer from '~/layouts/components/Footer';
 import Sidebar from './Sidebar';
 import styles from './SidebarLayout.module.scss';
+import React, { useState } from 'react';
 
 const cx = classNames.bind(styles);
 
 function SidebarLayout({ children }) {
+    const [totalQuantity, setTotalQuantity] = useState(JSON.parse(localStorage.getItem('cart'))?.totalQuantity);
+
+    const handleSetTotalQuantity = (quantity) => {
+        setTotalQuantity(quantity);
+    };
     return (
         <div>
-            <Header />
+            <Header totalQuantity={totalQuantity} />
             <div className={cx('container')}>
                 <div className="grid wide">
                     <div className="row">
@@ -18,7 +24,9 @@ function SidebarLayout({ children }) {
                             <Sidebar />
                         </div>
                         <div className="col l-9 m-12 c-12">
-                            <div className={cx('content')}>{children}</div>
+                            <div className={cx('content')}>
+                                {React.cloneElement(children, { setTotalQuantity: handleSetTotalQuantity })}
+                            </div>
                         </div>
                     </div>
                 </div>

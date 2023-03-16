@@ -11,7 +11,7 @@ import styles from './Product.module.scss';
 
 const cx = classNames.bind(styles);
 
-function Product() {
+function Product({ setTotalQuantity }) {
     const [cart, setCart] = useState(JSON.parse(localStorage.getItem('cart')));
     const [product, setProduct] = useState([]);
     const [quantity, setQuantity] = useState(1);
@@ -49,7 +49,6 @@ function Product() {
         const existingProductIndex = updateCart.products.findIndex((item) => {
             return item.product._id === product._id;
         });
-        console.log(existingProductIndex);
         // exist in cart already
         if (existingProductIndex === -1) {
             updateCart.products.push({
@@ -62,10 +61,10 @@ function Product() {
         updateCart.totalQuantity += quantity;
         updateCart.totalPrice += quantity * product.price;
         localStorage.setItem('cart', JSON.stringify(updateCart));
-        let totall = 0;
-        updateCart.products.forEach((item) => (totall += item.quantity * item.product.price));
-        console.log(totall);
+        let total = 0;
+        updateCart.products.forEach((item) => (total += item.quantity * item.product.price));
         setCart(updateCart);
+        setTotalQuantity(updateCart.totalQuantity);
     };
 
     return (

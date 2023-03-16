@@ -15,7 +15,6 @@
 }
 
 .info {
-    user-select: none;
 }
 
 .info-title {
@@ -29,6 +28,7 @@
     align-items: center;
     justify-content: space-between;
     margin-bottom: 40px;
+    user-select: none;
 }
 
 .price {
