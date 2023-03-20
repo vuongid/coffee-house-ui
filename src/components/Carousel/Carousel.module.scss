@@ -1,0 +1,40 @@
+.wrapper {
+    width: 100%;
+    overflow: hidden;
+}
+
+.img {
+    width: 100%;
+    display: block;
+}
+
+.border {
+    border-radius: 10px 0 0 0;
+}
+
+.custom-prev {
+    display: 'block';
+    margin-left: 40px;
+    z-index: 1;
+}
+
+.custom-next {
+    display: 'block';
+    margin-right: 40px;
+    z-index: 1;
+}
+
+li.dots {
+    bottom: 20px;
+    margin: 0 2px;
+}
+
+.dot {
+    height: 2px;
+    width: 20px;
+    background-color: var(--color-white);
+}
+
+.active {
+    background-color: var(--primary);
+}

@@ -15,6 +15,7 @@ function Cart({ setTotalQuantity }) {
         updateCart.products.splice(index, 1);
         let totalQuantity = 0;
         let totalPrice = 0;
+        // eslint-disable-next-line array-callback-return
         updateCart.products.map((item) => {
             totalPrice += item.quantity * item.product.price;
             totalQuantity += item.quantity;
@@ -37,6 +38,7 @@ function Cart({ setTotalQuantity }) {
             updateCart.products[index].quantity--;
             let totalQuantity = 0;
             let totalPrice = 0;
+            // eslint-disable-next-line array-callback-return
             updateCart.products.map((item) => {
                 totalPrice += item.quantity * item.product.price;
                 totalQuantity += item.quantity;
@@ -54,6 +56,7 @@ function Cart({ setTotalQuantity }) {
         updateCart.products[index].quantity++;
         let totalQuantity = 0;
         let totalPrice = 0;
+        // eslint-disable-next-line array-callback-return
         updateCart.products.map((item) => {
             totalPrice += item.quantity * item.product.price;
             totalQuantity += item.quantity;

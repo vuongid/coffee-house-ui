@@ -68,49 +68,51 @@ function Product({ setTotalQuantity }) {
     };
 
     return (
-        <>
-            <div className={cx('back-link')}>
-                <Link to="/menu">Menu</Link>
-                {' / '}
-                <Link to={`/menu/${product.idCategory?.slug}`}>{product.idCategory?.name}</Link>
-                {' / '}
-                {product.name}
-            </div>
-            <div className="row">
-                <div className="col l-6 m-12 c-12">
-                    <img className={cx('image')} alt="" src={`/images/products/${product.image}.png `} />
+        <div className="grid wide">
+            <div className={cx('container')}>
+                <div className={cx('back-link')}>
+                    <Link to="/menu">Menu</Link>
+                    {' / '}
+                    <Link to={`/menu/${product.idCategory?.slug}`}>{product.idCategory?.name}</Link>
+                    {' / '}
+                    {product.name}
                 </div>
-                <div className="col l-6 m-12 c-12">
-                    <div className={cx('info')}>
-                        <p className={cx('info-title')}>{product.name}</p>
-                        <div className={cx('info-quantity')}>
-                            <p className={cx('price')}>{product.price}</p>
-                            <div className={cx('quantity')}>
-                                <FontAwesomeIcon
-                                    icon={faMinusCircle}
-                                    className={cx('qty-icon', {
-                                        disabled: quantity < 2,
-                                    })}
-                                    onClick={handleMinus}
-                                />
-                                <span className={cx('qty-input')}>{quantity}</span>
-                                <FontAwesomeIcon
-                                    icon={faPlusCircle}
-                                    className={cx('qty-icon')}
-                                    onClick={() => {
-                                        setQuantity(quantity + 1);
-                                    }}
-                                />
-                            </div>
-                        </div>
-                        <p className={cx('description')}>{product.description}</p>
+                <div className="row">
+                    <div className="col l-6 m-12 c-12">
+                        <img className={cx('image')} alt="" src={`/images/products/${product.image}.png `} />
                     </div>
-                    <Button primary full leftIcon={orderIcon} className={cx('submit-btn')} onClick={handleAddCart}>
-                        Đặt giao hàng
-                    </Button>
+                    <div className="col l-6 m-12 c-12">
+                        <div className={cx('info')}>
+                            <p className={cx('info-title')}>{product.name}</p>
+                            <div className={cx('info-quantity')}>
+                                <p className={cx('price')}>{product.price}</p>
+                                <div className={cx('quantity')}>
+                                    <FontAwesomeIcon
+                                        icon={faMinusCircle}
+                                        className={cx('qty-icon', {
+                                            disabled: quantity < 2,
+                                        })}
+                                        onClick={handleMinus}
+                                    />
+                                    <span className={cx('qty-input')}>{quantity}</span>
+                                    <FontAwesomeIcon
+                                        icon={faPlusCircle}
+                                        className={cx('qty-icon')}
+                                        onClick={() => {
+                                            setQuantity(quantity + 1);
+                                        }}
+                                    />
+                                </div>
+                            </div>
+                            <p className={cx('description')}>{product.description}</p>
+                        </div>
+                        <Button primary full leftIcon={orderIcon} className={cx('submit-btn')} onClick={handleAddCart}>
+                            Đặt giao hàng
+                        </Button>
+                    </div>
                 </div>
             </div>
-        </>
+        </div>
     );
 }
 

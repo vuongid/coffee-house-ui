@@ -2,9 +2,9 @@ import axios from 'axios';
 import classNames from 'classnames/bind';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import Product from '~/components/Product';
 
 import styles from './Menu.module.scss';
-import MenuItem from './MenuItem';
 
 const cx = classNames.bind(styles);
 
@@ -78,14 +78,21 @@ function Menu() {
             .catch((error) => {
                 console.log(error);
             });
-    }, [slug]);
+    }, [slug, url]);
 
     return (
         <>
             {products.map((item) => (
                 <div key={item.id}>
                     <h1 className={cx('title')}>{item.name}</h1>
-                    <MenuItem products={item.products} />
+                    <div className="row">
+                        {item.products.map((product) => (
+                            <div key={product._id} className="col l-4 m-6 c-6">
+                                <Product product={product} />
+                            </div>
+                        ))}
+                    </div>
+                    {/* <MenuItem products={item.products} /> */}
                 </div>
             ))}
         </>
