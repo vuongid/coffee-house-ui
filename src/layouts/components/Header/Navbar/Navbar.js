@@ -6,10 +6,10 @@ import { dropDownIcon } from '~/components/Icons';
 
 const cx = classNames.bind(styles);
 
-function Navbar({ children, to, sub, icon, qty }) {
+function Navbar({ children, to, sub, icon, qty, onClick }) {
     return (
         <div className={cx('nav-item')}>
-            <NavLink className={(nav) => cx('nav-link', { active: nav.isActive })} to={to}>
+            <NavLink className={(nav) => cx('nav-link', { active: nav.isActive })} to={to} onClick={onClick}>
                 {children && <span className={cx('nav-title')}>{children}</span>}
                 {icon && (
                     <span className={cx('nav-icon')}>

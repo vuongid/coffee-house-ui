@@ -6,6 +6,8 @@ import images from '~/assets/images';
 import Navbar from './Navbar';
 import { cartIcon, userIcon, barsIcon, closeIcon } from '~/components/Icons';
 import { memo, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { authLogout } from '~/actions/auth';
 
 const cx = classNames.bind(styles);
 const navbar = [
@@ -48,15 +50,41 @@ const navbarUser = [
     {
         // title: 'vuong',
         icon: userIcon,
+        to: '/login',
+    },
+];
+
+const navbarUser1 = [
+    {
+        icon: cartIcon,
+        to: '/cart',
+    },
+    {
+        title: '',
+        icon: userIcon,
+        to: '/',
+    },
+    {
+        title: 'logout',
         to: '/',
     },
 ];
 
-function Header({ totalQuantity }) {
+function Header() {
     const [showNavRight, setShowNavRight] = useState(false);
+    const totalQuantity = useSelector((state) => state.cart?.totalQuantity);
+    const { isLogin, user } = useSelector((state) => state.auth);
+    const dispatch = useDispatch();
 
+    console.log();
     navbarUser[0].qty = totalQuantity;
 
+    const handleLogout = () => {
+        dispatch(authLogout());
+    };
+
+    navbarUser1[2].onClick = handleLogout;
+    navbarUser1[1].title = user?.name;
     return (
         <div className={cx('wrapper')}>
             <div className="grid wide">
@@ -92,15 +120,33 @@ function Header({ totalQuantity }) {
                         <div className={cx('navbar-overlay')} onClick={() => setShowNavRight(false)}></div>
                     )}
                     {/* user */}
-                    <div className={cx('navbar-user')}>
-                        {navbarUser.map((navbar, index) => {
-                            return (
-                                <Navbar key={index} to={navbar.to} icon={navbar.icon} qty={navbar.qty}>
-                                    {navbar.title}
-                                </Navbar>
-                            );
-                        })}
-                    </div>
+                    {isLogin ? (
+                        <div className={cx('navbar-user')}>
+                            {navbarUser1.map((navbar, index) => {
+                                return (
+                                    <Navbar
+                                        key={index}
+                                        to={navbar.to}
+                                        icon={navbar.icon}
+                                        qty={navbar.qty}
+                                        onClick={navbar.onClick}
+                                    >
+                                        {navbar.title}
+                                    </Navbar>
+                                );
+                            })}
+                        </div>
+                    ) : (
+                        <div className={cx('navbar-user')}>
+                            {navbarUser.map((navbar, index) => {
+                                return (
+                                    <Navbar key={index} to={navbar.to} icon={navbar.icon} qty={navbar.qty}>
+                                        {navbar.title}
+                                    </Navbar>
+                                );
+                            })}
+                        </div>
+                    )}
                 </div>
             </div>
         </div>

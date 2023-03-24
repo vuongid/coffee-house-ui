@@ -1,21 +1,23 @@
+import axios from 'axios';
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { faMinusCircle, faPlusCircle } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import axios from 'axios';
 import classNames from 'classnames/bind';
-import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
+
 import Button from '~/components/Button';
 import { orderIcon } from '~/components/Icons';
-
+import { updateCart } from '~/actions/cart';
 import styles from './Product.module.scss';
 
 const cx = classNames.bind(styles);
 
-function Product({ setTotalQuantity }) {
-    const [cart, setCart] = useState(JSON.parse(localStorage.getItem('cart')));
+function Product() {
+    const cart = useSelector((state) => state.cart);
+    const dispatch = useDispatch();
     const [product, setProduct] = useState([]);
     const [quantity, setQuantity] = useState(1);
-
     const { slug } = useParams();
 
     useEffect(() => {
@@ -36,35 +38,34 @@ function Product({ setTotalQuantity }) {
         setQuantity(quantity - 1);
     };
 
+    const handlePlus = () => setQuantity(quantity + 1);
+
     const handleAddCart = () => {
-        let updateCart = { ...cart };
+        let newCart = { ...cart };
         if (cart === null) {
-            updateCart = {
+            newCart = {
                 products: [],
                 totalPrice: 0,
                 totalQuantity: 0,
             };
         }
         //check product is existing
-        const existingProductIndex = updateCart.products.findIndex((item) => {
+        const existingProductIndex = newCart.products.findIndex((item) => {
             return item.product._id === product._id;
         });
         // exist in cart already
         if (existingProductIndex === -1) {
-            updateCart.products.push({
+            newCart.products.push({
                 quantity,
                 product,
             });
         } else {
-            updateCart.products[existingProductIndex].quantity += quantity;
+            newCart.products[existingProductIndex].quantity += quantity;
         }
-        updateCart.totalQuantity += quantity;
-        updateCart.totalPrice += quantity * product.price;
-        localStorage.setItem('cart', JSON.stringify(updateCart));
-        let total = 0;
-        updateCart.products.forEach((item) => (total += item.quantity * item.product.price));
-        setCart(updateCart);
-        setTotalQuantity(updateCart.totalQuantity);
+        newCart.totalQuantity += quantity;
+        newCart.totalPrice += quantity * product.price;
+        localStorage.setItem('cart', JSON.stringify(newCart));
+        dispatch(updateCart(newCart));
     };
 
     return (
@@ -98,9 +99,7 @@ function Product({ setTotalQuantity }) {
                                     <FontAwesomeIcon
                                         icon={faPlusCircle}
                                         className={cx('qty-icon')}
-                                        onClick={() => {
-                                            setQuantity(quantity + 1);
-                                        }}
+                                        onClick={handlePlus}
                                     />
                                 </div>
                             </div>
