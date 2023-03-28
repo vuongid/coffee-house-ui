@@ -48,11 +48,7 @@ function Home() {
                     <div className="row">
                         <div className={cx('col l-6 m-12 c-12', 'menu-img')}>
                             <a className={cx('menu-img-link')} href="/">
-                                <img
-                                    className={cx('img')}
-                                    src="https://file.hstatic.net/1000075078/file/highlight_cc022d45647d43e9bfbe1248b4573788.jpg"
-                                    alt=""
-                                />
+                                <img className={cx('img')} src={images.banner5} alt="" />
                             </a>
                         </div>
                         {products?.map((product) => (
@@ -68,19 +64,11 @@ function Home() {
                 <div className={cx('grid wide pd')}>
                     <div className={cx('row')}>
                         <div className={cx('col l-6 m-6 c-12')}>
-                            <img
-                                className={cx('cloudtea-img')}
-                                src="https://file.hstatic.net/1000075078/file/cloudtea_1_44b35a015ef14a1ba798b209937eeeb7.png"
-                                alt=""
-                            />
+                            <img className={cx('cloudtea-img')} src={images.cloudtea} alt="" />
                         </div>
                         <div className={cx('col l-6 m-6 c-12')}>
                             <div className={cx('cloudted-info')}>
-                                <img
-                                    className={cx('cloudted-info-img')}
-                                    alt=""
-                                    src="https://file.hstatic.net/1000075078/file/tagline_2_2a16d1acfd32480299bfd999e9e67afb.png"
-                                />
+                                <img className={cx('cloudted-info-img')} alt="" src={images.tagline} />
                                 <div className={cx('cloudtea-info-desc')}>
                                     Bộ sưu tập “Cầu Toàn Kèo Thơm” không chỉ là thức uống chăm da giữ dáng, mà còn là
                                     “vía may mắn” để năm mới thêm trọn vẹn. Với nền trà tốt cho sức khoẻ cùng hương vị
@@ -88,7 +76,7 @@ function Home() {
                                     sung túc cho năm 2023. Chiếc ly mèo đáng yêu còn như một lời chúc may mắn Nhà gửi
                                     đến bạn.
                                 </div>
-                                <Button primary full>
+                                <Button primary full className={cx('cloudtea-btn')}>
                                     Thử Ngay
                                 </Button>
                             </div>

@@ -5,6 +5,8 @@ import { faMinusCircle, faPlusCircle } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import classNames from 'classnames/bind';
 import { Link, useParams } from 'react-router-dom';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import Button from '~/components/Button';
 import { orderIcon } from '~/components/Icons';
@@ -65,6 +67,10 @@ function Product() {
         newCart.totalQuantity += quantity;
         newCart.totalPrice += quantity * product.price;
         localStorage.setItem('cart', JSON.stringify(newCart));
+        toast.success('Thêm sản phẩm thành công', {
+            autoClose: 800,
+        });
+        setQuantity(1);
         dispatch(updateCart(newCart));
     };
 
@@ -108,6 +114,7 @@ function Product() {
                         <Button primary full leftIcon={orderIcon} className={cx('submit-btn')} onClick={handleAddCart}>
                             Đặt giao hàng
                         </Button>
+                        <ToastContainer />
                     </div>
                 </div>
             </div>

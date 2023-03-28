@@ -6,6 +6,9 @@ const images = {
     banner2: require('~/assets/images/banners/banner-2.png'),
     banner3: require('~/assets/images/banners/banner-3.png'),
     banner4: require('~/assets/images/banners/banner-4.png'),
+    banner5: require('~/assets/images/banners/banner-5.png'),
+    cloudtea: require('~/assets/images/cloudtea.png'),
+    tagline: require('~/assets/images/tagline.png'),
     storeSIG1: require('~/assets/images/stores/sig-1.png'),
     storeSIG2: require('~/assets/images/stores/sig-2.png'),
     storeSIG3: require('~/assets/images/stores/sig-3.png'),
@@ -19,6 +22,15 @@ const images = {
     storeGV3: require('~/assets/images/stores/grandview-3.png'),
     storeGV4: require('~/assets/images/stores/grandview-4.png'),
     storeGV5: require('~/assets/images/stores/grandview-5.png'),
+    coffeeholic1: require('~/assets/images/blogs/Coffeeholic-1.png'),
+    coffeeholic2: require('~/assets/images/blogs/Coffeeholic-2.png'),
+    coffeeholic3: require('~/assets/images/blogs/Coffeeholic-3.png'),
+    teaholic1: require('~/assets/images/blogs/Teaholic-1.png'),
+    teaholic2: require('~/assets/images/blogs/Teaholic-2.png'),
+    teaholic3: require('~/assets/images/blogs/Teaholic-3.png'),
+    blog1: require('~/assets/images/blogs/blog-1.png'),
+    blog2: require('~/assets/images/blogs/blog-2.png'),
+    blog3: require('~/assets/images/blogs/blog-3.png'),
 };
 
 export default images;

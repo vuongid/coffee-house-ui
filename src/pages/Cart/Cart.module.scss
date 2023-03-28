@@ -1,5 +1,5 @@
 .wrapper {
-    padding: 0 14px;
+    padding: 40px 14px;
 }
 
 .cart {
@@ -34,6 +34,8 @@
 .remove {
     cursor: pointer;
     user-select: none;
+    text-decoration: underline;
+    color: var(--text-color);
 }
 
 .item-quantity {
@@ -41,14 +43,18 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    user-select: none;
 }
 
-.minus-icon {
-    font-size: 2.2rem;
-}
-
+.minus-icon,
 .plus-icon {
     font-size: 2.2rem;
+    color: var(--primary);
+}
+
+.quantity-input {
+    width: 20px;
+    text-align: center;
 }
 
 .minus-icon + .quantity-input,

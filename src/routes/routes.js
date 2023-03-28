@@ -19,8 +19,8 @@ const publicRoutes = [
     { path: '/store', component: Store },
     { path: '/hiring', component: Hiring },
     { path: '/cart', component: Cart },
-    { path: '/register', component: Register, layout: null },
-    { path: '/login', component: Login, layout: null },
+    { path: '/register', component: Register },
+    { path: '/login', component: Login },
 ];
 
 const privateRoutes = [];

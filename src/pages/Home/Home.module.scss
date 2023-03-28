@@ -51,6 +51,14 @@
 .cloudtea-info-desc {
 }
 
+.cloudtea-btn {
+    background-color: rgb(200, 7, 15);
+
+    &:hover {
+        background-color: rgb(200, 7, 15, 0.8);
+    }
+}
+
 .store {
 }
 

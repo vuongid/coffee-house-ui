@@ -25,6 +25,15 @@
     overflow: hidden;
 }
 
+.button {
+    background-color: rgb(200, 7, 15);
+    padding: 9px 88px;
+
+    &:hover {
+        background-color: rgb(200, 7, 15, 0.8);
+    }
+}
+
 .arrow {
     display: flex;
     margin-top: 16px;

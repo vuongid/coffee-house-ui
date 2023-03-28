@@ -5,9 +5,9 @@ import styles from './Header.module.scss';
 import images from '~/assets/images';
 import Navbar from './Navbar';
 import { cartIcon, userIcon, barsIcon, closeIcon } from '~/components/Icons';
-import { memo, useState } from 'react';
+import { memo, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { authLogout } from '~/actions/auth';
+import { authLogout, mid } from '~/actions/auth';
 
 const cx = classNames.bind(styles);
 const navbar = [
@@ -73,13 +73,22 @@ const navbarUser1 = [
 function Header() {
     const [showNavRight, setShowNavRight] = useState(false);
     const totalQuantity = useSelector((state) => state.cart?.totalQuantity);
-    const { isLogin, user } = useSelector((state) => state.auth);
+    const { isLogin, user, token } = useSelector((state) => state.auth);
+
     const dispatch = useDispatch();
 
-    console.log();
+    useEffect(() => {
+        if (token) {
+            dispatch(mid(token));
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
+
     navbarUser[0].qty = totalQuantity;
+    navbarUser1[0].qty = totalQuantity;
 
     const handleLogout = () => {
+        localStorage.removeItem('token');
         dispatch(authLogout());
     };
 

@@ -72,7 +72,9 @@ function Store() {
                             <div className={cx('info')}>
                                 <h3 className={cx('title')} dangerouslySetInnerHTML={{ __html: store.title }}></h3>
                                 <p className={cx('description')}>{store.description}</p>
-                                <Button primary>Tìm hiểu thêm</Button>
+                                <Button primary className={cx('button')}>
+                                    Tìm hiểu thêm
+                                </Button>
                                 <div className={cx('arrow')}>
                                     <div className={cx('prev-icon')} onClick={handlePrev}>
                                         {arrowIcon}

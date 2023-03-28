@@ -4,7 +4,6 @@ import classNames from 'classnames/bind';
 import Footer from '~/layouts/components/Footer';
 import Sidebar from './Sidebar';
 import styles from './SidebarLayout.module.scss';
-import React, { useState } from 'react';
 
 const cx = classNames.bind(styles);
 
