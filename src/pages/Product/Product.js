@@ -1,17 +1,16 @@
-import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { faMinusCircle, faPlusCircle } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import classNames from 'classnames/bind';
 import { Link, useParams } from 'react-router-dom';
-import { toast, ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { toast } from 'react-toastify';
 
 import Button from '~/components/Button';
 import { orderIcon } from '~/components/Icons';
 import { updateCart } from '~/actions/cart';
 import styles from './Product.module.scss';
+import { getProductBySlug } from '~/services/productService';
 
 const cx = classNames.bind(styles);
 
@@ -23,16 +22,11 @@ function Product() {
     const { slug } = useParams();
 
     useEffect(() => {
-        if (slug) {
-            axios
-                .get(`http://localhost:3001/api/product/${slug}`)
-                .then((response) => {
-                    setProduct(response.data);
-                })
-                .catch((error) => {
-                    console.log(error);
-                });
-        }
+        const fetchAPI = async () => {
+            const res = await getProductBySlug(slug);
+            setProduct(res);
+        };
+        fetchAPI();
     }, [slug]);
 
     const handleMinus = () => {
@@ -68,7 +62,7 @@ function Product() {
         newCart.totalPrice += quantity * product.price;
         localStorage.setItem('cart', JSON.stringify(newCart));
         toast.success('Thêm sản phẩm thành công', {
-            autoClose: 800,
+            autoClose: 700,
         });
         setQuantity(1);
         dispatch(updateCart(newCart));
@@ -114,7 +108,6 @@ function Product() {
                         <Button primary full leftIcon={orderIcon} className={cx('submit-btn')} onClick={handleAddCart}>
                             Đặt giao hàng
                         </Button>
-                        <ToastContainer />
                     </div>
                 </div>
             </div>

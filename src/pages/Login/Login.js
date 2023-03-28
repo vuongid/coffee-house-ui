@@ -1,4 +1,3 @@
-import axios from 'axios';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import classNames from 'classnames/bind';
@@ -9,6 +8,7 @@ import Button from '~/components/Button';
 
 import styles from './Login.module.scss';
 import { useEffect } from 'react';
+import { login } from '~/services/authService';
 
 const cx = classNames.bind(styles);
 
@@ -27,36 +27,30 @@ function Login() {
         password: Yup.string().required('Vui lòng nhập password'),
     });
 
+    const handleLogin = async (values) => {
+        try {
+            const res = await login(values);
+            navigate('/');
+            dispatch(authRequest(res.token));
+            dispatch(mid(res.token));
+            localStorage.setItem('token', JSON.stringify(res));
+        } catch (error) {
+            if (error.response.status === 404) {
+                formik.setFieldError('userName', 'User name không tồn tại');
+            } else if (error.response.status === 401) {
+                formik.setFieldError('password', 'Sai password');
+            }
+        }
+    };
+
     const formik = useFormik({
         initialValues: {
             userName: '',
             password: '',
         },
         validationSchema: validationSchema,
-        onSubmit: async (values) => {
-            try {
-                const response = await axios.post('http://localhost:3001/api/auth/login', values);
-                if (response.status === 200) {
-                    navigate('/');
-                    dispatch(authRequest(response.data.token));
-                    dispatch(mid(response.data.token));
-                    localStorage.setItem('token', JSON.stringify(response.data));
-                    alert('success');
-                    console.log('success');
-                }
-            } catch (error) {
-                if (error.response.status === 404) {
-                    formik.errors.userName = 'User name không tồn tại';
-                } else if (error.response.status === 401) {
-                    formik.errors.password = 'Sai password';
-                }
-            }
-        },
+        onSubmit: handleLogin,
     });
-
-    // const handleLogout = () => {
-    //     dispatch(authLogout());
-    // };
 
     return (
         <div className={cx('wrapper')}>

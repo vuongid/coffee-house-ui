@@ -13,7 +13,6 @@ const publicRoutes = [
     { path: '/', component: Home },
     { path: '/menu', component: Menu, layout: SidebarLayout },
     { path: '/menu/:slug', component: Menu, layout: SidebarLayout },
-    { path: '/product', component: Product, layout: SidebarLayout },
     { path: '/product/:slug', component: Product },
     { path: '/blog', component: Blog },
     { path: '/store', component: Store },

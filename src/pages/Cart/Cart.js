@@ -1,14 +1,13 @@
 import { faMinusCircle, faPlusCircle } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import axios from 'axios';
 import classNames from 'classnames/bind';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Navigate } from 'react-router-dom';
-import { toast, ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { toast } from 'react-toastify';
 import { updateCart } from '~/actions/cart';
 import Button from '~/components/Button';
+import * as cartServices from '~/services/cartServices';
 
 import styles from './Cart.module.scss';
 
@@ -76,38 +75,25 @@ function Cart() {
             });
             return acc;
         }, []);
-        try {
-            const response = await axios.post(
-                'http://localhost:3001/api/cart/add',
-                {
-                    products,
-                    totalQuantity: cart.totalQuantity,
-                    totalPrice: cart.totalPrice,
-                    address,
-                    note,
-                },
-                {
-                    headers: {
-                        Authorization: `Bearer ${token}`,
-                    },
-                },
-            );
-            if (response.status === 201) {
-                alert('success');
-                toast.success('Đặt hàng thành công', {
-                    autoClose: 800,
-                });
-                dispatch(updateCart(null));
-                localStorage.removeItem('cart');
-            }
-        } catch (error) {
-            console.log(error);
-        }
+        cartServices.addCart(
+            {
+                products,
+                totalQuantity: cart.totalQuantity,
+                totalPrice: cart.totalPrice,
+                address,
+                note,
+            },
+            token,
+        );
+        toast.success('Đặt hàng thành công', {
+            autoClose: 700,
+        });
+        dispatch(updateCart(null));
+        localStorage.removeItem('cart');
     };
 
     return isLogin ? (
         <div className={cx('wrapper', 'grid', 'wide')}>
-            <ToastContainer />
             {cart ? (
                 <div className="row">
                     <div className="col l-8 m-12 c-12">
@@ -166,7 +152,6 @@ function Cart() {
                         <Button primary full onClick={handleSubmit}>
                             Đặt hàng
                         </Button>
-                        <ToastContainer></ToastContainer>
                     </div>
                 </div>
             ) : (

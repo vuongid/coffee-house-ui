@@ -1,4 +1,3 @@
-import axios from 'axios';
 import classNames from 'classnames/bind';
 import { useEffect, useState } from 'react';
 
@@ -6,6 +5,7 @@ import images from '~/assets/images';
 import Button from '~/components/Button';
 import Carousel from '~/components/Carousel';
 import Product from '~/components/Product';
+import { getProducts } from '~/services/productService';
 import Blog from './Blog';
 import styles from './Home.module.scss';
 import Store from './Store';
@@ -30,10 +30,11 @@ const bannerImages = [
 function Home() {
     const [products, setProducts] = useState();
     useEffect(() => {
-        axios
-            .get('http://localhost:3001/api/product?limit=6')
-            .then((response) => setProducts(response.data))
-            .catch((error) => console.log(error));
+        const fetchAPI = async () => {
+            const res = await getProducts(6);
+            setProducts(res);
+        };
+        fetchAPI();
     }, []);
 
     return (

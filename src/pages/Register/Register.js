@@ -1,4 +1,3 @@
-import axios from 'axios';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { Link, useNavigate } from 'react-router-dom';
@@ -9,6 +8,8 @@ import styles from './Register.module.scss';
 import { useDispatch } from 'react-redux';
 import { authLogout } from '~/actions/auth';
 import { useEffect } from 'react';
+import { register } from '~/services/userService';
+import { toast } from 'react-toastify';
 
 const cx = classNames.bind(styles);
 
@@ -45,6 +46,20 @@ function Register() {
             .matches(phoneRegExp, 'Vui lòng nhập đúng số điện thoại'),
     });
 
+    const handleRegister = async (values) => {
+        try {
+            await register(values);
+            toast.success('Đăng ký tài khoản thành công', {
+                autoClose: 700,
+            });
+            navigate('/login');
+        } catch (error) {
+            if (error.response.status === 409) {
+                formik.setFieldError('userName', 'User name đã tồn tại');
+            }
+        }
+    };
+
     const formik = useFormik({
         initialValues: {
             userName: '',
@@ -56,19 +71,7 @@ function Register() {
             phone: '',
         },
         validationSchema: validationSchema,
-        onSubmit: async (values) => {
-            console.log(values);
-            try {
-                await axios.post('http://localhost:3001/api/user/add', values);
-                console.log('User created successfully');
-                navigate('/login');
-            } catch (error) {
-                if (error.response.status === 409) {
-                    formik.errors.userName = 'User name đã tồn tại';
-                }
-                console.log(error.response.data.message);
-            }
-        },
+        onSubmit: handleRegister,
     });
 
     return (

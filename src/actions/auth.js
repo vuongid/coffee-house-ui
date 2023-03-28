@@ -1,4 +1,4 @@
-import axios from 'axios';
+import { getMyProfile } from '~/services/userService';
 
 export const authRequest = (token) => {
     return {
@@ -21,18 +21,8 @@ export const authLogout = () => {
 };
 
 export const mid = (token) => {
-    return (dispatch) => {
-        axios
-            .get(`http://localhost:3001/api/user/me`, {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                },
-            })
-            .then((response) => {
-                dispatch(authSuccess(response.data));
-            })
-            .catch((error) => {
-                console.log(error);
-            });
+    return async (dispatch) => {
+        const res = await getMyProfile(token);
+        dispatch(authSuccess(res));
     };
 };
