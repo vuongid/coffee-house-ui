@@ -3,7 +3,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import classNames from 'classnames/bind';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Navigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { updateCart } from '~/actions/cart';
 import Button from '~/components/Button';
@@ -16,7 +15,7 @@ const cx = classNames.bind(styles);
 function Cart() {
     const dispatch = useDispatch();
     const cart = useSelector((state) => state.cart);
-    const { isLogin, token, user } = useSelector((state) => state.auth);
+    const { token, user } = useSelector((state) => state.auth);
     const [address, setAddress] = useState(user?.address);
     const [note, setNote] = useState('');
 
@@ -92,7 +91,7 @@ function Cart() {
         localStorage.removeItem('cart');
     };
 
-    return isLogin ? (
+    return (
         <div className={cx('wrapper', 'grid', 'wide')}>
             {cart ? (
                 <div className="row">
@@ -158,8 +157,6 @@ function Cart() {
                 <h1>Giỏ hàng rỗng</h1>
             )}
         </div>
-    ) : (
-        <Navigate to="/login" />
     );
 }
 export default Cart;

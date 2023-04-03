@@ -22,18 +22,22 @@ function Menu() {
 
     return (
         <>
-            {products.map((item) => (
-                <div key={item.id}>
-                    <h1 className={cx('title')}>{item.name}</h1>
-                    <div className="row">
-                        {item.products.map((product) => (
-                            <div key={product._id} className="col l-4 m-6 c-6">
-                                <Product product={product} />
-                            </div>
-                        ))}
+            {products ? (
+                products.map((item, index) => (
+                    <div key={index}>
+                        <h1 className={cx('title')}>{item.name}</h1>
+                        <div className="row">
+                            {item.products.map((product) => (
+                                <div key={product._id} className="col l-4 m-6 c-6">
+                                    <Product product={product} />
+                                </div>
+                            ))}
+                        </div>
                     </div>
-                </div>
-            ))}
+                ))
+            ) : (
+                <div>Sản phẩm sắp ra mắt</div>
+            )}
         </>
     );
 }

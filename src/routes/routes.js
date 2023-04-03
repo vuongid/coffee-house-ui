@@ -8,6 +8,11 @@ import Store from '~/pages/Store';
 import Cart from '~/pages/Cart';
 import Register from '~/pages/Register/';
 import Login from '~/pages/Login';
+import Admin from '~/pages/Admin/Admin';
+import CategoryList from '~/pages/Admin/CategoryManagement/CategoryList';
+import AddCategory from '~/pages/Admin/CategoryManagement/AddCategory';
+import EditCategory from '~/pages/Admin/CategoryManagement/EditCategory';
+import AdminLayout from '~/layouts/AdminLayout/AdminLayout';
 
 const publicRoutes = [
     { path: '/', component: Home },
@@ -17,11 +22,17 @@ const publicRoutes = [
     { path: '/blog', component: Blog },
     { path: '/store', component: Store },
     { path: '/hiring', component: Hiring },
-    { path: '/cart', component: Cart },
     { path: '/register', component: Register },
     { path: '/login', component: Login },
+    { path: '/admin', component: Admin, layout: AdminLayout },
+    { path: '/admin/category-list', component: CategoryList, layout: AdminLayout },
+    { path: '/admin/category-list/add', component: AddCategory, layout: AdminLayout },
+    { path: '/admin/category-list/:slug', component: EditCategory, layout: AdminLayout },
 ];
 
-const privateRoutes = [];
+const privateRoutes = [
+    { path: '/cart', component: Cart },
+    { path: '/admin', component: Admin },
+];
 
 export { publicRoutes, privateRoutes };
