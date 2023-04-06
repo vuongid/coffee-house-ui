@@ -1,8 +1,11 @@
-import { useState } from 'react';
-import { useEffect } from 'react';
-import { Button, Table } from 'react-bootstrap';
+import classNames from 'classnames/bind';
+import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+
+import styles from './CategoryList.module.scss';
 import { deleteCategory, getAllCategory } from '~/services/categoryService';
+
+const cx = classNames.bind(styles);
 
 function CategoryList() {
     const [categories, setCategories] = useState([]);
@@ -29,7 +32,7 @@ function CategoryList() {
         <div>
             <h1>Quản Lý Danh Mục</h1>
             <Link to="add">thêm sản phẩm</Link>
-            <Table striped bordered hover>
+            <table className={cx('table')}>
                 <thead>
                     <tr>
                         <th>#</th>
@@ -44,19 +47,19 @@ function CategoryList() {
                             <td>{index + 1}</td>
                             <td>{category.name}</td>
                             <td>
-                                <Button variant="primary" onClick={() => handleUpdate(category._id)}>
+                                <button className={cx('button')} onClick={() => handleUpdate(category._id)}>
                                     Edit
-                                </Button>
+                                </button>
                             </td>
                             <td>
-                                <Button variant="danger" onClick={() => handleDelete(category._id)}>
+                                <button className={cx('button')} onClick={() => handleDelete(category._id)}>
                                     Delete
-                                </Button>
+                                </button>
                             </td>
                         </tr>
                     ))}
                 </tbody>
-            </Table>
+            </table>
         </div>
     );
 }

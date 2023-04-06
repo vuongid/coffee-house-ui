@@ -1,8 +1,14 @@
-import { Formik, Form, Field, ErrorMessage } from 'formik';
+import * as Yup from 'yup';
+import classNames from 'classnames/bind';
+import { toast } from 'react-toastify';
+import { Formik, Form } from 'formik';
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import * as Yup from 'yup';
+
+import styles from './EditCategory.module.scss';
 import { getCategory, updateCategory } from '~/services/categoryService';
+
+const cx = classNames.bind(styles);
 
 function EditCategory() {
     const { slug } = useParams();
@@ -27,6 +33,9 @@ function EditCategory() {
 
     const handleSubmit = async (values) => {
         await updateCategory(slug, values);
+        toast.success('Sửa danh mục thành công', {
+            autoClose: 700,
+        });
         navigate(-1);
     };
 
@@ -35,18 +44,31 @@ function EditCategory() {
     }
 
     return (
-        <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={handleSubmit}>
-            {({ errors, touched }) => (
-                <Form>
-                    <div>
-                        <label htmlFor="name">Tên danh mục</label>
-                        <Field name="name" type="text" />
-                        <ErrorMessage name="name" />
-                    </div>
-                    <button type="submit">Thêm danh mục</button>
-                </Form>
-            )}
-        </Formik>
+        <div className={cx('wrapper')}>
+            <h1 className={cx('title')}>Sửa Danh Mục</h1>
+            <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={handleSubmit}>
+                {({ errors, touched, values, handleChange }) => (
+                    <Form className={cx('form')}>
+                        <label htmlFor="name" className={cx('form-label')}>
+                            Tên danh mục
+                        </label>
+                        <input
+                            className={cx('form-input')}
+                            spellCheck="false"
+                            type="text"
+                            id="name"
+                            name="name"
+                            value={values.name}
+                            onChange={handleChange}
+                        />
+                        {touched.name && errors.name && <div className={cx('error')}>{errors.name}</div>}
+                        <button className={cx('submit-btn')} type="submit">
+                            Sửa danh mục
+                        </button>
+                    </Form>
+                )}
+            </Formik>
+        </div>
     );
 }
 

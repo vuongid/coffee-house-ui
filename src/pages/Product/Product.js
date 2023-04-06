@@ -11,13 +11,15 @@ import { orderIcon } from '~/components/Icons';
 import { updateCart } from '~/actions/cart';
 import styles from './Product.module.scss';
 import { getProductBySlug } from '~/services/productService';
+import config from '~/config';
 
 const cx = classNames.bind(styles);
 
 function Product() {
     const cart = useSelector((state) => state.cart);
     const dispatch = useDispatch();
-    const [product, setProduct] = useState([]);
+    const [product, setProduct] = useState(null);
+
     const [quantity, setQuantity] = useState(1);
     const { slug } = useParams();
 
@@ -68,19 +70,23 @@ function Product() {
         dispatch(updateCart(newCart));
     };
 
+    if (!product) {
+        return <div>loading</div>;
+    }
+
     return (
         <div className="grid wide">
             <div className={cx('container')}>
                 <div className={cx('back-link')}>
                     <Link to="/menu">Menu</Link>
-                    {' / '}
-                    <Link to={`/menu/${product.idCategory?.slug}`}>{product.idCategory?.name}</Link>
-                    {' / '}
-                    {product.name}
+                    &nbsp;&nbsp;/&nbsp;&nbsp;
+                    <Link to={`/menu/${product.idCategory.slug}`}>{product.idCategory.name}</Link>
+                    &nbsp;&nbsp;/&nbsp;&nbsp;
+                    <span className={cx('back-link-name')}>{product.name}</span>
                 </div>
                 <div className="row">
                     <div className="col l-6 m-12 c-12">
-                        <img className={cx('image')} alt="" src={`/images/products/${product.image}.png `} />
+                        <img className={cx('image')} alt="" src={product && config.IMAGES_URL + product.image} />
                     </div>
                     <div className="col l-6 m-12 c-12">
                         <div className={cx('info')}>

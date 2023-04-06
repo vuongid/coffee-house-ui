@@ -28,10 +28,7 @@ const navbar = [
         to: '/blog',
         sub: [{ title: 'Coffeeholic' }, { title: 'Teaholic' }, { title: 'Blogholic' }],
     },
-    {
-        title: 'Cảm Hứng CloudFee',
-        to: '/blog',
-    },
+
     {
         title: 'Cửa Hàng',
         to: '/store',

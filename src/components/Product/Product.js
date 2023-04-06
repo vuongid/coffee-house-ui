@@ -2,6 +2,7 @@ import classNames from 'classnames/bind';
 import { Link } from 'react-router-dom';
 
 import styles from './Product.module.scss';
+import config from '~/config';
 
 const cx = classNames.bind(styles);
 
@@ -10,7 +11,7 @@ function Product({ product }) {
         <div key={product._id} className={cx('product')}>
             <div className={cx('product-img')}>
                 <Link to={`/product/${product.slug}`}>
-                    <img className={cx('image')} alt="" src={`/images/products/${product.image}.png `} />
+                    <img className={cx('image')} alt="" src={config.IMAGES_URL + product.image} />
                 </Link>
             </div>
             <div className={cx('product-info')}>
