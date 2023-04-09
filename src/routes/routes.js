@@ -16,6 +16,9 @@ import AdminLayout from '~/layouts/AdminLayout/AdminLayout';
 import ProductList from '~/pages/Admin/ProductManagement/ProductList';
 import AddProduct from '~/pages/Admin/ProductManagement/AddProduct';
 import EditProduct from '~/pages/Admin/ProductManagement/EditProduct';
+import BlogList from '~/pages/Admin/BlogManagement/BlogList';
+import AddBlog from '~/pages/Admin/BlogManagement/AddBlog';
+import EditBlog from '~/pages/Admin/BlogManagement/EditBlog';
 
 const publicRoutes = [
     { path: '/', component: Home },
@@ -34,6 +37,9 @@ const publicRoutes = [
     { path: '/admin/product-list', component: ProductList, layout: AdminLayout },
     { path: '/admin/product-list/add', component: AddProduct, layout: AdminLayout },
     { path: '/admin/product-list/:slug', component: EditProduct, layout: AdminLayout },
+    { path: '/admin/blog-list', component: BlogList, layout: AdminLayout },
+    { path: '/admin/blog-list/add', component: AddBlog, layout: AdminLayout },
+    { path: '/admin/blog-list/:slug', component: EditBlog, layout: AdminLayout },
 ];
 
 const privateRoutes = [

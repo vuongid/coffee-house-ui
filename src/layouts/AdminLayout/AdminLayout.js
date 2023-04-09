@@ -5,8 +5,8 @@ function AdminLayout({ children }) {
         <>
             <div>
                 <Link to={'/admin/category-list'}>Quản lý danh mục</Link>
-                <Link to={'/admin/product-list'}>React-Bootstrap</Link>
-                <Link to={'/admin/blog-list'}>Quản lý sản phẩm</Link>
+                <Link to={'/admin/product-list'}>Quản lý sản phẩm</Link>
+                <Link to={'/admin/blog-list'}>Quản lý blog</Link>
             </div>
             <div className="grid wide">{children}</div>
         </>
