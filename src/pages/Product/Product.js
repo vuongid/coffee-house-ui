@@ -86,7 +86,11 @@ function Product() {
                 </div>
                 <div className="row">
                     <div className="col l-6 m-12 c-12">
-                        <img className={cx('image')} alt="" src={product && config.IMAGES_URL + product.image} />
+                        <img
+                            className={cx('image')}
+                            alt=""
+                            src={product && config.IMAGES_URL.productImage + product.image}
+                        />
                     </div>
                     <div className="col l-6 m-12 c-12">
                         <div className={cx('info')}>

@@ -55,7 +55,7 @@ function ProductList() {
                         <tr key={index}>
                             <td>{index + 1}</td>
                             <td>
-                                <img src={config.IMAGES_URL + product.image} alt="" style={{ width: '100px' }} />
+                                <img src={config.IMAGES_URL.productImage + product.image} alt="" style={{ width: '100px' }} />
                             </td>
                             <td>{product.name}</td>
                             <td>{product.description}</td>

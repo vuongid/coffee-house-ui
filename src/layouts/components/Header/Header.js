@@ -26,7 +26,11 @@ const navbar = [
     {
         title: 'Chuyện Nhà',
         to: '/blog',
-        sub: [{ title: 'Coffeeholic' }, { title: 'Teaholic' }, { title: 'Blogholic' }],
+        sub: [
+            { title: 'Coffeeholic', to: '/blog/Coffeeholic' },
+            { title: 'Teaholic', to: '/blog/Teaholic' },
+            { title: 'Blog', to: '/blog/Blog' },
+        ],
     },
 
     {

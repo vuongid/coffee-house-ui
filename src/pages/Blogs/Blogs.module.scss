@@ -1,0 +1,133 @@
+.header {
+    margin: 32px 0 38px;
+}
+
+.header-heading {
+    text-align: center;
+    position: relative;
+    font-size: 2.4rem;
+    font-family: var(--font-sf-pro-display);
+    padding-bottom: 12px;
+    margin-bottom: 8px;
+
+    &::after {
+        position: absolute;
+        content: '';
+        width: 24px;
+        height: 3px;
+        bottom: 0;
+        left: calc(50% - 12px);
+        background-color: var(--primary);
+    }
+}
+
+.header-content {
+    width: 588px;
+    max-width: 100%;
+    margin: 0 auto;
+    text-align: center;
+    font-size: 1.2rem;
+    line-height: 2.4rem;
+    margin-bottom: 24px;
+}
+
+.header-tabs {
+    display: flex;
+    justify-content: center;
+    overflow-y: auto;
+}
+
+.tab-btn {
+    border: 1px solid var(--text-color);
+    border-radius: 30px;
+    margin: 0 12px;
+    color: var(--text-color);
+    width: 120px;
+
+    &:hover {
+        color: var(--primary);
+    }
+
+    &.active {
+        background-color: #fff7e6;
+        color: var(--primary);
+        border-color: transparent;
+    }
+}
+
+.all-blog {
+}
+
+.news-articles {
+    margin-bottom: 92px;
+}
+
+.blog-1 {
+    width: 100%;
+    background-color: #fff7e6;
+    margin-top: 52px;
+
+    .featured_img {
+        margin-top: -42px;
+        margin-left: -14px;
+    }
+}
+
+.img {
+    width: 100%;
+    margin: auto 0;
+}
+
+.title {
+    padding-left: 12px;
+    border-left: 4px solid #e57905;
+    margin-bottom: 24px;
+    margin-top: 40px;
+}
+
+.button {
+    text-align: center;
+    margin: 40px 0;
+}
+
+.blog-btn {
+    background-color: var(--color-white);
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    padding: 9px 74px;
+
+    &:hover {
+        color: var(--primary);
+    }
+}
+
+.blog-2 {
+    margin-top: 50px;
+
+    .featured_img {
+        display: flex;
+        height: 100%;
+    }
+}
+
+.list-blog {
+    max-width: 700px;
+    margin: 0 auto 40px;
+}
+
+// Mobile & PC
+@media (max-width: 1023px) {
+    .header-tabs {
+        justify-content: flex-start;
+    }
+}
+
+// Mobile
+@media (max-width: 739px) {
+    .image123 {
+        order: -1;
+    }
+
+    .list-blog {
+        padding: 0 14px;
+    }
+}

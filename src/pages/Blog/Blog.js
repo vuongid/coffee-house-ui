@@ -1,5 +1,8 @@
+import { useParams } from 'react-router-dom';
+
 function Blog() {
-    return <h1 style={{ height: 3000 }}>Blog</h1>;
+    const { slug } = useParams();
+    return <h1>{slug}</h1>;
 }
 
 export default Blog;

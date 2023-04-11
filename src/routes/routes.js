@@ -2,7 +2,8 @@ import Home from '~/pages/Home';
 import Menu from '~/pages/Menu';
 import Product from '~/pages/Product';
 import { SidebarLayout } from '~/layouts';
-import Blog from '~/pages/Blog';
+import Blogs from '~/pages/Blogs';
+import Blog from '~/pages/Blog/Blog';
 import Hiring from '~/pages/Hiring';
 import Store from '~/pages/Store';
 import Cart from '~/pages/Cart';
@@ -25,7 +26,9 @@ const publicRoutes = [
     { path: '/menu', component: Menu, layout: SidebarLayout },
     { path: '/menu/:slug', component: Menu, layout: SidebarLayout },
     { path: '/product/:slug', component: Product },
-    { path: '/blog', component: Blog },
+    { path: '/blog', component: Blogs },
+    { path: '/blog/:slug', component: Blogs },
+    { path: '/blog/:category/:slug', component: Blog },
     { path: '/store', component: Store },
     { path: '/hiring', component: Hiring },
     { path: '/register', component: Register },

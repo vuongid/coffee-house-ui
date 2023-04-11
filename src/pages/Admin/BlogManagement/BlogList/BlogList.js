@@ -2,6 +2,7 @@ import classNames from 'classnames/bind';
 import { Link, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 
+import config from '~/config';
 import styles from './BlogList.module.scss';
 import { deleteBlog, getBlogs } from '~/services/blogService';
 
@@ -52,7 +53,7 @@ function BlogList() {
                             <td>{index + 1}</td>
                             <td>
                                 <img
-                                    src={`http://localhost:3001/images/blogs/${blog.image}`}
+                                    src={`${config.IMAGES_URL.blogImage + blog.image}`}
                                     alt=""
                                     style={{ width: '100px' }}
                                 />

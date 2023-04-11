@@ -11,7 +11,7 @@ function Product({ product }) {
         <div key={product._id} className={cx('product')}>
             <div className={cx('product-img')}>
                 <Link to={`/product/${product.slug}`}>
-                    <img className={cx('image')} alt="" src={config.IMAGES_URL + product.image} />
+                    <img className={cx('image')} alt="" src={config.IMAGES_URL.productImage + product.image} />
                 </Link>
             </div>
             <div className={cx('product-info')}>
