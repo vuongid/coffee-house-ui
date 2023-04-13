@@ -108,7 +108,9 @@ function Blog() {
                                             <BlogCard key={index} blog={blog} rowContent={2} vertical />
                                         ))}
                                     <div className={cx('button')}>
-                                        <Button className={cx('blog-btn')}>Tìm hiểu thêm</Button>
+                                        <Button onClick={() => handleTab('Coffeeholic')} className={cx('blog-btn')}>
+                                            Tìm hiểu thêm
+                                        </Button>
                                     </div>
                                 </div>
                             </div>
@@ -120,11 +122,13 @@ function Blog() {
                                 <div className={cx('col l-7 m-7 c-12')}>
                                     <h2 className={cx('title')}>{ListBlog && ListBlog[0].category}</h2>
                                     {ListBlog &&
-                                        ListBlog[0].blogs.map((blog, index) => (
+                                        ListBlog[1].blogs.map((blog, index) => (
                                             <BlogCard key={index} blog={blog} rowContent={2} vertical />
                                         ))}
                                     <div className={cx('button')}>
-                                        <Button className={cx('blog-btn')}>Tìm hiểu thêm</Button>
+                                        <Button onClick={() => handleTab('Teaholic')} className={cx('blog-btn')}>
+                                            Tìm hiểu thêm
+                                        </Button>
                                     </div>
                                 </div>
                                 <div className={cx('col l-5 m-5 c-12', 'image123')}>
@@ -154,11 +158,13 @@ function Blog() {
                                 <div className={cx('col l-7 m-7 c-12')}>
                                     <h2 className={cx('title')}>{ListBlog && ListBlog[0].category}</h2>
                                     {ListBlog &&
-                                        ListBlog[0].blogs.map((blog, index) => (
+                                        ListBlog[2].blogs.map((blog, index) => (
                                             <BlogCard key={index} blog={blog} rowContent={2} vertical />
                                         ))}
                                     <div className={cx('button')}>
-                                        <Button className={cx('blog-btn')}>Tìm hiểu thêm</Button>
+                                        <Button onClick={() => handleTab('Blog')} className={cx('blog-btn')}>
+                                            Tìm hiểu thêm
+                                        </Button>
                                     </div>
                                 </div>
                             </div>

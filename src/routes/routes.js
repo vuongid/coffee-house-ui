@@ -28,7 +28,7 @@ const publicRoutes = [
     { path: '/product/:slug', component: Product },
     { path: '/blog', component: Blogs },
     { path: '/blog/:slug', component: Blogs },
-    { path: '/blog/:category/:slug', component: Blog },
+    { path: '/blog/:category/:id', component: Blog },
     { path: '/store', component: Store },
     { path: '/hiring', component: Hiring },
     { path: '/register', component: Register },

@@ -15,7 +15,7 @@ function BlogCard({ blog, height = 56, rowContent = 2, vertical = false }) {
     const formattedDate = date.format('DD/MM/YYYY');
     return (
         <div className={cx('blog-card', { flex: vertical })}>
-            <Link className={cx({ 'image-link': vertical })} to={`/blog/${blog.category}/${blog.slug}`}>
+            <Link className={cx({ 'image-link': vertical })} to={`/blog/${blog.category}/${blog._id}`}>
                 <div
                     className={cx('image')}
                     style={{
@@ -25,7 +25,7 @@ function BlogCard({ blog, height = 56, rowContent = 2, vertical = false }) {
                 ></div>
             </Link>
             <div className={cx('info', { padding: vertical })}>
-                <Link to={`/blog/${blog.category}/${blog.slug}`} className={cx('title')}>
+                <Link to={`/blog/${blog.category}/${blog._id}`} className={cx('title')}>
                     {blog.title}
                 </Link>
                 <p className={cx('date')}>{formattedDate}</p>
