@@ -49,13 +49,12 @@ const navbarUser = [
         to: '/cart',
     },
     {
-        // title: 'vuong',
         icon: userIcon,
         to: '/login',
     },
 ];
 
-const navbarUser1 = [
+const activeNavbarUser = [
     {
         icon: cartIcon,
         to: '/cart',
@@ -63,11 +62,8 @@ const navbarUser1 = [
     {
         title: '',
         icon: userIcon,
-        to: '/',
-    },
-    {
-        title: 'logout',
-        to: '/',
+        to: '',
+        sub: [{ title: 'logout', to: '/' }],
     },
 ];
 
@@ -85,16 +81,22 @@ function Header() {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
-    navbarUser[0].qty = totalQuantity;
-    navbarUser1[0].qty = totalQuantity;
-
     const handleLogout = () => {
         localStorage.removeItem('token');
         dispatch(authLogout());
     };
 
-    navbarUser1[2].onClick = handleLogout;
-    navbarUser1[1].title = user?.name;
+    if (user?.role === 'admin') {
+        activeNavbarUser[1].sub[1] = { title: 'admin', to: '/admin' };
+    } else {
+        activeNavbarUser[1].sub.splice(1, 1);
+    }
+
+    navbarUser[0].qty = totalQuantity;
+    activeNavbarUser[0].qty = totalQuantity;
+    activeNavbarUser[1].sub[0].onClick = handleLogout;
+    activeNavbarUser[1].title = user?.name;
+
     return (
         <div className={cx('wrapper')}>
             <div className="grid wide">
@@ -132,7 +134,7 @@ function Header() {
                     {/* user */}
                     {isLogin ? (
                         <div className={cx('navbar-user')}>
-                            {navbarUser1.map((navbar, index) => {
+                            {activeNavbarUser.map((navbar, index) => {
                                 return (
                                     <Navbar
                                         key={index}
@@ -140,6 +142,8 @@ function Header() {
                                         icon={navbar.icon}
                                         qty={navbar.qty}
                                         onClick={navbar.onClick}
+                                        sub={navbar.sub}
+                                        vertical
                                     >
                                         {navbar.title}
                                     </Navbar>

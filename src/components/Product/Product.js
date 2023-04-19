@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 
 import styles from './Product.module.scss';
 import config from '~/config';
+import formatPrice from '~/utils/formatPrice';
 
 const cx = classNames.bind(styles);
 
@@ -18,7 +19,7 @@ function Product({ product }) {
                 <Link to={`/product/${product.slug}`}>
                     <h3 className={cx('info-title')}>{product.name}</h3>
                 </Link>
-                <p className={cx('info-price')}>{product.price}</p>
+                <p className={cx('info-price')}>{formatPrice(product.price)}</p>
             </div>
         </div>
     );

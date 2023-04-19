@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 import config from '~/config';
 import styles from './BlogList.module.scss';
 import { deleteBlog, getBlogs } from '~/services/blogService';
+import formatDate from '~/utils/formatDate';
 
 const cx = classNames.bind(styles);
 
@@ -60,7 +61,7 @@ function BlogList() {
                             </td>
                             <td>{blog.title}</td>
                             <td>{blog.category}</td>
-                            <td>{blog.createdAt}</td>
+                            <td>{formatDate(blog.createdAt)}</td>
                             <td>
                                 <button className={cx('button')} onClick={() => handleEdit(blog._id)}>
                                     Edit

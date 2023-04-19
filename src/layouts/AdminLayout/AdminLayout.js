@@ -1,14 +1,53 @@
+import classNames from 'classnames/bind';
+import Navbar from '../components/Header/Navbar/Navbar';
+
+import styles from './AdminLayout.module.scss';
+import { useDispatch } from 'react-redux';
+import { authLogout } from '~/actions/auth';
 import { Link } from 'react-router-dom';
+import images from '~/assets/images';
+
+const cx = classNames.bind(styles);
+
+const navbar = [
+    { title: 'Danh Mục', to: '/admin/category-list' },
+    { title: 'Sản Phẩm', to: '/admin/product-list' },
+    { title: 'Blog', to: '/admin/blog-list' },
+];
 
 function AdminLayout({ children }) {
+    const dispatch = useDispatch();
+
+    const handleLogout = () => {
+        localStorage.removeItem('token');
+        dispatch(authLogout());
+    };
     return (
         <>
-            <div>
-                <Link to={'/admin/category-list'}>Quản lý danh mục</Link>
-                <Link to={'/admin/product-list'}>Quản lý sản phẩm</Link>
-                <Link to={'/admin/blog-list'}>Quản lý blog</Link>
+            <div className={cx('header')}>
+                <div className={cx('grid wide')}>
+                    <div className={cx('header-container')}>
+                        <Link className={cx('logo')} to="/">
+                            <img src={images.logo} alt="Coffee House" className={cx('logo-img')} />
+                        </Link>{' '}
+                        <div className={cx('navbar')}>
+                            {navbar.map((item, index) => (
+                                <Navbar key={index} to={item.to}>
+                                    {item.title}
+                                </Navbar>
+                            ))}
+                        </div>
+                        <div className={cx('user')}>
+                            <div className={cx('logout')} onClick={handleLogout}>
+                                logout
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div className="grid wide">{children}</div>
+            <div className={cx('grid wide')}>
+                <div className={cx('container')}>{children}</div>
+            </div>
         </>
     );
 }

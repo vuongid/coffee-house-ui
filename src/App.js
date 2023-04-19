@@ -2,10 +2,11 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-import { privateRoutes, publicRoutes } from '~/routes/routes';
+import { adminRoutes, userRoutes, publicRoutes } from '~/routes/routes';
 import { DefaultLayout } from '~/layouts/';
 import { Fragment } from 'react';
-import PrivateRoute from './components/PrivateRoute';
+import UserRoute from './routes/UserRoute/UserRoute';
+import AdminRoute from './routes/AdminRoute/AdminRoute';
 
 function App() {
     return (
@@ -35,7 +36,7 @@ function App() {
                             />
                         );
                     })}
-                    {privateRoutes.map((route, index) => {
+                    {userRoutes.map((route, index) => {
                         const Page = route.component;
                         let Layout = DefaultLayout;
 
@@ -50,12 +51,37 @@ function App() {
                                 key={index}
                                 path={route.path}
                                 element={
-                                    <PrivateRoute>
+                                    <UserRoute>
                                         <Layout>
                                             <ToastContainer />
                                             <Page />
                                         </Layout>
-                                    </PrivateRoute>
+                                    </UserRoute>
+                                }
+                            />
+                        );
+                    })}
+                    {adminRoutes.map((route, index) => {
+                        const Page = route.component;
+                        let Layout = DefaultLayout;
+
+                        if (route.layout) {
+                            Layout = route.layout;
+                        } else if (route.layout === null) {
+                            Layout = Fragment;
+                        }
+
+                        return (
+                            <Route
+                                key={index}
+                                path={route.path}
+                                element={
+                                    <AdminRoute>
+                                        <Layout>
+                                            <ToastContainer />
+                                            <Page />
+                                        </Layout>
+                                    </AdminRoute>
                                 }
                             />
                         );

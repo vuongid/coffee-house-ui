@@ -12,6 +12,7 @@ import { updateCart } from '~/actions/cart';
 import styles from './Product.module.scss';
 import { getProductBySlug } from '~/services/productService';
 import config from '~/config';
+import formatPrice from '~/utils/formatPrice';
 
 const cx = classNames.bind(styles);
 
@@ -96,7 +97,7 @@ function Product() {
                         <div className={cx('info')}>
                             <p className={cx('info-title')}>{product.name}</p>
                             <div className={cx('info-quantity')}>
-                                <p className={cx('price')}>{product.price}</p>
+                                <p className={cx('price')}>{formatPrice(product.price)}</p>
                                 <div className={cx('quantity')}>
                                     <FontAwesomeIcon
                                         icon={faMinusCircle}

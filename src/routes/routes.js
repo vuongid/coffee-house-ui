@@ -13,7 +13,7 @@ import Admin from '~/pages/Admin/Admin';
 import CategoryList from '~/pages/Admin/CategoryManagement/CategoryList';
 import AddCategory from '~/pages/Admin/CategoryManagement/AddCategory';
 import EditCategory from '~/pages/Admin/CategoryManagement/EditCategory';
-import AdminLayout from '~/layouts/AdminLayout/AdminLayout';
+import AdminLayout from '~/layouts/AdminLayout';
 import ProductList from '~/pages/Admin/ProductManagement/ProductList';
 import AddProduct from '~/pages/Admin/ProductManagement/AddProduct';
 import EditProduct from '~/pages/Admin/ProductManagement/EditProduct';
@@ -33,6 +33,11 @@ const publicRoutes = [
     { path: '/hiring', component: Hiring },
     { path: '/register', component: Register },
     { path: '/login', component: Login },
+];
+
+const userRoutes = [{ path: '/cart', component: Cart }];
+
+const adminRoutes = [
     { path: '/admin', component: Admin, layout: AdminLayout },
     { path: '/admin/category-list', component: CategoryList, layout: AdminLayout },
     { path: '/admin/category-list/add', component: AddCategory, layout: AdminLayout },
@@ -45,9 +50,4 @@ const publicRoutes = [
     { path: '/admin/blog-list/:slug', component: EditBlog, layout: AdminLayout },
 ];
 
-const privateRoutes = [
-    { path: '/cart', component: Cart },
-    { path: '/admin', component: Admin },
-];
-
-export { publicRoutes, privateRoutes };
+export { publicRoutes, userRoutes, adminRoutes };

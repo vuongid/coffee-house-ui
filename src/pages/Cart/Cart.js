@@ -4,11 +4,14 @@ import classNames from 'classnames/bind';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
-import { updateCart } from '~/actions/cart';
-import Button from '~/components/Button';
-import * as cartServices from '~/services/cartServices';
 
+import * as cartServices from '~/services/cartServices';
+import config from '~/config';
+import Button from '~/components/Button';
 import styles from './Cart.module.scss';
+import { updateCart } from '~/actions/cart';
+import { Link } from 'react-router-dom';
+import formatPrice from '~/utils/formatPrice';
 
 const cx = classNames.bind(styles);
 
@@ -92,70 +95,92 @@ function Cart() {
     };
 
     return (
-        <div className={cx('wrapper', 'grid', 'wide')}>
-            {cart ? (
-                <div className="row">
-                    <div className="col l-8 m-12 c-12">
-                        <h3>Giỏ hàng</h3>
-                        <div className={cx('cart')}>
-                            {cart.products.map((item, index) => (
-                                <div key={index} className={cx('cart-item')}>
-                                    <img
-                                        className={cx('item-img')}
-                                        alt=""
-                                        src={`/images/products/${item.product.image}.png `}
-                                    />
-                                    <div className={cx('item-info')}>
-                                        <p className={cx('product')}>{item.product.name}</p>
-                                        <p className={cx('category')}>{item.product.idCategory.name}</p>
-                                        <p className={cx('remove')} onClick={() => handleDelete(index)}>
-                                            remove
-                                        </p>
-                                    </div>
-                                    <div className={cx('item-quantity')}>
-                                        <FontAwesomeIcon
-                                            icon={faMinusCircle}
-                                            className={cx('minus-icon')}
-                                            onClick={() => handleMinus(index)}
+        <div className={cx('grid', 'wide')}>
+            <div className={cx('wrapper')}>
+                {cart ? (
+                    <div className="row">
+                        <div className="col l-8 m-12 c-12">
+                            <h1>Giỏ hàng</h1>
+                            <div className={cx('cart')}>
+                                {cart.products.map((item, index) => (
+                                    <div key={index} className={cx('cart-item')}>
+                                        <img
+                                            className={cx('item-img')}
+                                            alt=""
+                                            src={config.IMAGES_URL.productImage + item.product.image}
                                         />
-                                        <span className={cx('quantity-input')}>{item.quantity}</span>
-                                        <FontAwesomeIcon
-                                            icon={faPlusCircle}
-                                            className={cx('plus-icon')}
-                                            onClick={() => handlePlus(index)}
-                                        />
+                                        <div className={cx('item-info')}>
+                                            <p className={cx('product')}>{item.product.name}</p>
+                                            <p className={cx('category')}>{item.product.idCategory.name}</p>
+                                            <p className={cx('remove')} onClick={() => handleDelete(index)}>
+                                                remove
+                                            </p>
+                                        </div>
+                                        <div className={cx('item-quantity')}>
+                                            <FontAwesomeIcon
+                                                icon={faMinusCircle}
+                                                className={cx('minus-icon')}
+                                                onClick={() => handleMinus(index)}
+                                            />
+                                            <span className={cx('quantity-input')}>{item.quantity}</span>
+                                            <FontAwesomeIcon
+                                                icon={faPlusCircle}
+                                                className={cx('plus-icon')}
+                                                onClick={() => handlePlus(index)}
+                                            />
+                                        </div>
+                                        <div className={cx('item-price')}>{formatPrice(item.product.price)}</div>
                                     </div>
-                                    <div className={cx('item-price')}>{item.product.price}</div>
-                                </div>
-                            ))}
+                                ))}
+                            </div>
+                        </div>
+                        <div className="col l-4 m-12 c-12">
+                            <h1>Thanh toán</h1>
+                            <div className={cx('checkout')}>
+                                <p className={cx('')}>
+                                    <span className={cx('label')}>Số lượng</span>
+                                    <span className={cx('value')}>{cart.totalQuantity}</span>
+                                </p>
+                                <p>
+                                    <span className={cx('label')}>Thành tiền</span>
+                                    <span className={cx('value')}>{formatPrice(cart.totalPrice)}</span>
+                                </p>
+                                <label>Địa chỉ</label>
+                                <input
+                                    spellCheck={false}
+                                    value={address}
+                                    placeholder="Địa chỉ"
+                                    onChange={(e) => setAddress(e.target.value)}
+                                ></input>
+                                <label>Ghi chú</label>
+                                <textarea
+                                    spellCheck={false}
+                                    rows={4}
+                                    value={note}
+                                    placeholder="Ghi chú"
+                                    onChange={(e) => setNote(e.target.value)}
+                                />
+                                <Button primary full onClick={handleSubmit}>
+                                    Đặt hàng
+                                </Button>
+                            </div>
                         </div>
                     </div>
-                    <div className="col l-4 m-12 c-12">
-                        <h3>Thanh toán</h3>
-                        <div className={cx('checkout')}>
-                            <p>
-                                <span className={cx('label')}>Số lượng</span>
-                                <span className={cx('value')}>{cart.totalQuantity}</span>
-                            </p>
-                            <p>
-                                <span className={cx('label')}>Thành tiền</span>
-                                <span className={cx('value')}>{cart.totalPrice}</span>
-                            </p>
-                            <input
-                                value={address}
-                                placeholder="Địa chỉ"
-                                onChange={(e) => setAddress(e.target.value)}
-                            ></input>
-                            <input value={note} placeholder="Ghi chú" onChange={(e) => setNote(e.target.value)}></input>
+                ) : (
+                    <>
+                        <Link className={cx('link-menu')} to="/menu">
+                            {'< Menu'}
+                        </Link>
+                        <div className={cx('image-cart')}>
+                            <img
+                                className={cx('cart-null')}
+                                src="https://theme.hstatic.net/200000268973/1000665768/14/empty-cart_large.png"
+                                alt=""
+                            />
                         </div>
-                        <Button primary full onClick={handleSubmit}>
-                            Đặt hàng
-                        </Button>
-                    </div>
-                </div>
-            ) : (
-                <h1>Giỏ hàng rỗng</h1>
-            )}
+                    </>
+                )}
+            </div>
         </div>
     );
 }
