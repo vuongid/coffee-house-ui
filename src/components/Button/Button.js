@@ -6,7 +6,7 @@ import styles from './Button.module.scss';
 
 const cx = classNames.bind(styles);
 
-function Button({ children, to, href, primary, full, leftIcon, rightIcon, className, ...passProps }) {
+function Button({ children, to, href, primary, full, leftIcon, rightIcon, className, backgroundSlide, ...passProps }) {
     let Comp = 'button';
     const _props = {
         ...passProps,
@@ -15,6 +15,7 @@ function Button({ children, to, href, primary, full, leftIcon, rightIcon, classN
         [className]: className,
         primary,
         full,
+        backgroundSlide,
     });
 
     if (to) {

@@ -120,7 +120,7 @@ function Blog() {
                         <div className={cx('grid pd')}>
                             <div className={cx('row')}>
                                 <div className={cx('col l-7 m-7 c-12')}>
-                                    <h2 className={cx('title')}>{ListBlog && ListBlog[0].category}</h2>
+                                    <h2 className={cx('title')}>{ListBlog && ListBlog[1].category}</h2>
                                     {ListBlog &&
                                         ListBlog[1].blogs.map((blog, index) => (
                                             <BlogCard key={index} blog={blog} rowContent={2} vertical />
@@ -131,7 +131,7 @@ function Blog() {
                                         </Button>
                                     </div>
                                 </div>
-                                <div className={cx('col l-5 m-5 c-12', 'image123')}>
+                                <div className={cx('col l-5 m-5 c-12', 'featured')}>
                                     <div className={cx('featured_img')}>
                                         <img
                                             className={cx('img')}
@@ -156,7 +156,7 @@ function Blog() {
                                     </div>
                                 </div>
                                 <div className={cx('col l-7 m-7 c-12')}>
-                                    <h2 className={cx('title')}>{ListBlog && ListBlog[0].category}</h2>
+                                    <h2 className={cx('title')}>{ListBlog && ListBlog[2].category}</h2>
                                     {ListBlog &&
                                         ListBlog[2].blogs.map((blog, index) => (
                                             <BlogCard key={index} blog={blog} rowContent={2} vertical />

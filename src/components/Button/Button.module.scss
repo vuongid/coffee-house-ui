@@ -34,6 +34,32 @@
     padding: 12px 0;
 }
 
+.backgroundSlide {
+    background-color: #fff7e6;
+    color: #c8070f;
+    border: 2px solid #fff7e6;
+    position: relative;
+    z-index: 1;
+
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        z-index: -1;
+        background-color: var(--color-white);
+        transition: transform 300ms ease-in-out;
+        transform: scaleX(0);
+        transform-origin: left;
+    }
+
+    &:hover::before {
+        transform: scale(1);
+    }
+}
+
 .icon + .title,
 .title + .icon {
     margin-left: 8px;

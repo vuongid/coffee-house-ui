@@ -30,6 +30,7 @@ const publicRoutes = [
     { path: '/blog/:slug', component: Blogs },
     { path: '/blog/:category/:id', component: Blog },
     { path: '/store', component: Store },
+    { path: '/store/:slug', component: Store },
     { path: '/hiring', component: Hiring },
     { path: '/register', component: Register },
     { path: '/login', component: Login },
