@@ -58,7 +58,7 @@ function Login() {
 
     return (
         <div className={cx('wrapper')}>
-            <div className={cx('container')}>
+            <div className={cx('container', 'pd')}>
                 <h1 className={cx('heading')}>Đăng nhập</h1>
                 <form onSubmit={formik.handleSubmit} className={cx('form')}>
                     <label className={cx('title')} htmlFor="userName">

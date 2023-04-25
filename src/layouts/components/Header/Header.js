@@ -95,7 +95,6 @@ function Header() {
     navbarUser[0].qty = totalQuantity;
     activeNavbarUser[0].qty = totalQuantity;
     activeNavbarUser[1].sub[0].onClick = handleLogout;
-    activeNavbarUser[1].title = user?.name;
 
     return (
         <div className={cx('wrapper')}>

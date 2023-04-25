@@ -7,7 +7,7 @@
 }
 
 .container {
-    width: 420px;
+    max-width: 420px;
     margin: auto;
 }
 
@@ -35,6 +35,7 @@
     line-height: 2.2rem;
     border: 2px solid #f2f2f2;
     border-radius: 4px;
+    max-width: 100%;
 
     &.error {
         border-color: #e86850;
@@ -48,4 +49,8 @@
 .submit-btn {
     margin-top: 10px;
     background-color: var(--color-white);
+}
+
+.login {
+    margin-top: 12px;
 }
