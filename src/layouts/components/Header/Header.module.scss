@@ -5,7 +5,7 @@
     width: 100%;
     background-color: rgba(255, 255, 255, 0.8);
     border-bottom: 1px solid #00000026;
-    z-index: 1;
+    z-index: 2;
 }
 
 .inner {
@@ -17,7 +17,7 @@
 }
 
 .bars-icon {
-    padding: 16px;
+    padding: 16px 12px;
     display: none;
     cursor: pointer;
     &:hover {
@@ -74,7 +74,7 @@
         width: 320px;
         max-width: 100%;
         background-color: var(--color-white);
-        z-index: 2;
+        z-index: 3;
         overflow-y: auto;
     }
 

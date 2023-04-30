@@ -1,0 +1,307 @@
+$color-yellow: #febf3e;
+
+// banner
+.banner {
+    img {
+        width: 100%;
+        display: block;
+    }
+}
+
+.Couldfee-bg {
+    background-image: url('https://hrv.hstatic.net/s_1000266602/_cloudfee_bg.jpg');
+    background-position: top center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    color: white;
+}
+
+.top-desc {
+    padding: 40px 16px;
+    max-width: 824px;
+    margin: 0 auto;
+    font-size: 1.8rem;
+    line-height: 1.22;
+    font-weight: 500;
+    text-align: center;
+}
+
+// product
+.product {
+}
+
+.couldfee {
+    margin-bottom: 8px;
+}
+
+.info-could {
+    margin: auto 0;
+}
+
+.subtitle {
+    font-family: var(--font-baron);
+    color: $color-yellow;
+    font-size: 2.4rem;
+}
+
+.main-title {
+    font-family: var(--font-glad);
+    color: $color-yellow;
+    font-size: 8rem;
+    line-height: 1.05;
+}
+
+.cloud-desc {
+    line-height: 2rem;
+    margin-bottom: 16px;
+}
+
+.could-link {
+    font-size: 1.4rem;
+    font-weight: 700;
+    line-height: 2.4rem;
+
+    a {
+        display: inline-flex;
+        align-items: center;
+        color: $color-yellow;
+    }
+}
+
+.arrow-icon {
+    display: inline-flex;
+    align-items: center;
+    margin-left: 14px;
+}
+
+.img-cloud img {
+    width: 100%;
+    display: block;
+}
+
+.right .info-could {
+    order: 2;
+}
+
+// video
+.video {
+    padding: 42px 0 40px;
+
+    .cloud-desc {
+        max-width: 824px;
+        padding: 0 16px;
+        text-align: center;
+        margin: 0 auto 16px;
+    }
+}
+
+.video .could-link {
+    display: flex;
+    justify-content: center;
+}
+
+.video-title {
+    color: $color-yellow;
+    font-weight: 800;
+    font-size: 6.4rem;
+    margin-bottom: 16px;
+    text-align: center;
+    font-family: var(--font-sf-pro-display);
+}
+
+.video-box {
+    max-width: 998px;
+    margin: 0 auto 16px;
+}
+
+.box-frame {
+    position: relative;
+    padding-bottom: 56%;
+
+    iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+}
+
+// story
+.story {
+}
+
+.story-wide {
+    max-width: 1020px;
+    margin: 0 auto;
+}
+
+.story .main-title {
+    font-family: var(--font-family);
+    font-size: 4rem;
+    font-weight: 600;
+    line-height: 1.2;
+    margin-bottom: 8px;
+}
+
+.story-btn {
+    background-color: $color-yellow;
+    border-radius: 8px;
+    font-size: 1.6rem;
+    padding: 8px 38px;
+}
+
+// customer
+.customer {
+    padding-bottom: 40px;
+}
+
+.customer-title {
+    font-weight: 800;
+    font-size: 40px;
+    color: $color-yellow;
+    margin-bottom: 32px;
+    text-align: center;
+    line-height: 1;
+}
+
+.customer-wide {
+    max-width: 824px;
+    margin: 0 auto;
+}
+
+.customer-item {
+    display: flex;
+    align-items: flex-end;
+    margin-bottom: 58px;
+    flex-wrap: wrap;
+}
+
+.customer-img {
+    flex: 0 0 384px;
+    width: 384px;
+    margin-bottom: 24px;
+    z-index: 1;
+
+    img {
+        width: 100%;
+        display: block;
+        border-radius: 8px;
+    }
+}
+
+.customer-info {
+    flex: 0 0 calc(100% - 384px);
+    width: calc(100% - 384px);
+    position: relative;
+    background: #febf3e;
+    border-radius: 8px;
+    padding: 56px 32px;
+    position: relative;
+}
+
+.customer-desc {
+    font-size: 1.6rem;
+    color: var(--color-black);
+    margin-bottom: 16px;
+}
+
+.customer-btn {
+    background-color: #262626;
+    color: $color-yellow;
+    font-size: 1.6rem;
+    border-radius: 8px;
+    padding: 10px 32px;
+}
+
+// pc
+@media (min-width: 1024px) {
+}
+
+//  pc & table
+@media (min-width: 741px) {
+    .customer-info {
+        &::before {
+            content: '';
+            position: absolute;
+            background: #febf3e;
+            height: 100%;
+            width: 69px;
+            right: calc(100% - 8px);
+            top: 0;
+            border-radius: 8px 0 0 8px;
+        }
+
+        &::after {
+            content: '';
+            position: absolute;
+            top: 100%;
+            right: 114px;
+            width: 60px;
+            height: 36px;
+            background: url(https://hrv.hstatic.net/s_1000266602/_polygon-img.png) top left/100% no-repeat;
+        }
+    }
+}
+
+// mobile
+@media (max-width: 740px) {
+    // product
+    .couldfee {
+        margin-bottom: 40px;
+    }
+
+    .subtitle {
+        font-size: 1.6rem;
+    }
+
+    .main-title {
+        font-size: 7.2rem;
+    }
+
+    .info-could {
+        order: 2;
+    }
+
+    // video
+    .video-title {
+        font-size: 3.2rem;
+    }
+
+    // story
+    .story-btn {
+        width: 100%;
+    }
+
+    // customer
+    .customer-img,
+    .customer-info {
+        flex: 0 0 100%;
+        width: 100%;
+    }
+    .customer-img {
+        margin: 0;
+        padding: 0 8px;
+    }
+
+    .customer-info {
+        padding: 52px 16px 34px;
+        transform: translateY(-36px);
+
+        &::after {
+            content: '';
+            position: absolute;
+            top: 100%;
+            width: 60px;
+            height: 36px;
+            right: 114px;
+
+            background: url(https://hrv.hstatic.net/s_1000266602/_polygon-img.png) top left/100% no-repeat;
+        }
+    }
+
+    .customer-btn {
+        width: 100%;
+    }
+}

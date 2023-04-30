@@ -4,7 +4,7 @@ import Product from '~/pages/Product';
 import { SidebarLayout } from '~/layouts';
 import Blogs from '~/pages/Blogs';
 import Blog from '~/pages/Blog/Blog';
-import Hiring from '~/pages/Hiring';
+import Cloudfee from '~/pages/Cloudfee';
 import Store from '~/pages/Store';
 import Cart from '~/pages/Cart';
 import Register from '~/pages/Register/';
@@ -31,7 +31,7 @@ const publicRoutes = [
     { path: '/blog/:category/:id', component: Blog },
     { path: '/store', component: Store },
     { path: '/store/:slug', component: Store },
-    { path: '/hiring', component: Hiring },
+    { path: '/inspiration', component: Cloudfee },
     { path: '/register', component: Register },
     { path: '/login', component: Login },
 ];

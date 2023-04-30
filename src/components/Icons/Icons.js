@@ -182,3 +182,9 @@ export const shareIcon = (
         ></path>
     </svg>
 );
+
+export const arrowRight = (
+    <svg width="6" height="13" viewBox="0 0 6 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M6 6.5L0 12.5V0.5L6 6.5Z" fill="#FEBF3E"></path>
+    </svg>
+);

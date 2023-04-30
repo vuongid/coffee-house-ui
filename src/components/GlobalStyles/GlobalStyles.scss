@@ -25,11 +25,25 @@
     font-weight: 600;
 }
 
+@font-face {
+    font-family: 'Baron';
+    src: url('../../assets/fonts/baron-black.ttf');
+    font-weight: 600;
+}
+
+@font-face {
+    font-family: 'Glad';
+    src: url('../../assets/fonts/glad.ttf');
+    font-weight: 600;
+}
+
 :root {
     // Fonts
-    --font-family: 'SF Pro Text', sans-serif;
-    --font-sf-pro-display: 'SF Pro Display', sans-serif;
-    --font-lato: 'Lato', sans-serif;
+    --font-family: 'SF Pro Text', 'sans-serif';
+    --font-sf-pro-display: 'SF Pro Display', 'sans-serif';
+    --font-lato: 'Lato', 'sans-serif';
+    --font-baron: 'Baron', 'sans-serif';
+    --font-glad: 'Glad', 'sans-serif';
 
     //Color
     --primary: #e57905;

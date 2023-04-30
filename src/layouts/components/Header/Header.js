@@ -38,8 +38,8 @@ const navbar = [
         to: '/store',
     },
     {
-        title: 'Tuyển Dụng',
-        to: '/hiring',
+        title: 'Cảm hứng CloudFee',
+        to: '/inspiration',
     },
 ];
 
