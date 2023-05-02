@@ -7,11 +7,13 @@ import { DefaultLayout } from '~/layouts/';
 import { Fragment } from 'react';
 import UserRoute from './routes/UserRoute/UserRoute';
 import AdminRoute from './routes/AdminRoute/AdminRoute';
+import ScrollToTop from './components/ScrollToTop/ScrollToTop';
 
 function App() {
     return (
         <Router>
             <div className="App">
+                <ScrollToTop />
                 <Routes>
                     {publicRoutes.map((route, index) => {
                         const Page = route.component;

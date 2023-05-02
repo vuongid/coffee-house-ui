@@ -1,14 +1,14 @@
 import classNames from 'classnames/bind';
-
-import styles from './Store.module.scss';
-import Sidebar from '~/layouts/SidebarLayout/Sidebar/Sidebar';
-import Button from '~/components/Button/Button';
-import { facebookIcon, messageIcon, shareIcon } from '~/components/Icons';
+import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
+
+import config from '~/config';
+import Button from '~/components/Button/Button';
+import Sidebar from '~/layouts/SidebarLayout/Sidebar/Sidebar';
+import styles from './Store.module.scss';
+import { facebookIcon, messageIcon, shareIcon } from '~/components/Icons';
 import { getLocations } from '~/services/locationService';
 import { getStoreBySlug } from '~/services/storeService';
-import { useParams } from 'react-router-dom';
-import config from '~/config';
 
 const cx = classNames.bind(styles);
 
@@ -21,7 +21,6 @@ function Store() {
         const fetchApi = async () => {
             const listLocation = await getLocations();
             const listStore = await getStoreBySlug(slug);
-            console.log(listStore);
             setLocations(listLocation);
             setStores(listStore);
         };

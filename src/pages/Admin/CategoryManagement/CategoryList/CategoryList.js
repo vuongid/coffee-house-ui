@@ -1,7 +1,8 @@
 import classNames from 'classnames/bind';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
+import Pagination from '~/components/Pagination/Pagination';
 import styles from './CategoryList.module.scss';
 import { deleteCategory, getAllCategory } from '~/services/categoryService';
 
@@ -9,7 +10,12 @@ const cx = classNames.bind(styles);
 
 function CategoryList() {
     const [categories, setCategories] = useState([]);
+    const [currentPage, setCurrentPage] = useState(0);
     const navigate = useNavigate();
+    const perPage = 5;
+    const pageCount = Math.ceil(categories.length / perPage);
+    const tableRef = useRef(null);
+
     useEffect(() => {
         const fetchAPI = async () => {
             const res = await getAllCategory();
@@ -28,11 +34,18 @@ function CategoryList() {
         navigate(`${id}`);
     };
 
+    const handlePageClick = ({ selected: selectedPage }) => {
+        window.scrollTo({
+            top: tableRef.current.offsetTop,
+        });
+        setCurrentPage(selectedPage);
+    };
+
     return (
         <div>
             <h1>Quản Lý Danh Mục</h1>
             <Link to="add">thêm sản phẩm</Link>
-            <table className={cx('table')}>
+            <table className={cx('table')} ref={tableRef}>
                 <thead>
                     <tr>
                         <th>#</th>
@@ -42,9 +55,9 @@ function CategoryList() {
                     </tr>
                 </thead>
                 <tbody>
-                    {categories.map((category, index) => (
+                    {categories.slice(currentPage * perPage, (currentPage + 1) * perPage).map((category, index) => (
                         <tr key={index}>
-                            <td>{index + 1}</td>
+                            <td>{currentPage * perPage + index + 1}</td>
                             <td>{category.name}</td>
                             <td>
                                 <button className={cx('button')} onClick={() => handleUpdate(category._id)}>
@@ -60,6 +73,9 @@ function CategoryList() {
                     ))}
                 </tbody>
             </table>
+            <div className={cx('pagination')}>
+                <Pagination pageCount={pageCount} onPageChange={handlePageClick} />
+            </div>
         </div>
     );
 }

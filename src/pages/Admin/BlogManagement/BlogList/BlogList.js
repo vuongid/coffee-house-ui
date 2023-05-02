@@ -1,17 +1,23 @@
 import classNames from 'classnames/bind';
 import { Link, useNavigate } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 import config from '~/config';
+import formatDate from '~/utils/formatDate';
+import Pagination from '~/components/Pagination/Pagination';
 import styles from './BlogList.module.scss';
 import { deleteBlog, getBlogs } from '~/services/blogService';
-import formatDate from '~/utils/formatDate';
 
 const cx = classNames.bind(styles);
 
 function BlogList() {
     const [blogs, setBlogs] = useState([]);
+    const [currentPage, setCurrentPage] = useState(0);
     const navigate = useNavigate();
+    const tableRef = useRef(null);
+    const perPage = 5;
+    const pageCount = Math.ceil(blogs.length / perPage);
+
     useEffect(() => {
         const fetchApi = async () => {
             const res = await getBlogs();
@@ -32,11 +38,18 @@ function BlogList() {
         }
     };
 
+    const handlePageClick = ({ selected: selectedPage }) => {
+        window.scrollTo({
+            top: tableRef.current.offsetTop,
+        });
+        setCurrentPage(selectedPage);
+    };
+
     return (
         <>
             <h1>Blog list</h1>
             <Link to="add">Add blog</Link>
-            <table className={cx('table')}>
+            <table className={cx('table')} ref={tableRef}>
                 <thead>
                     <tr>
                         <th>#</th>
@@ -49,7 +62,7 @@ function BlogList() {
                     </tr>
                 </thead>
                 <tbody>
-                    {blogs.map((blog, index) => (
+                    {blogs.slice(currentPage * perPage, (currentPage + 1) * perPage).map((blog, index) => (
                         <tr key={index}>
                             <td>{index + 1}</td>
                             <td>
@@ -76,6 +89,9 @@ function BlogList() {
                     ))}
                 </tbody>
             </table>
+            <div className={cx('pagination')}>
+                <Pagination pageCount={pageCount} onPageChange={handlePageClick} />
+            </div>
         </>
     );
 }

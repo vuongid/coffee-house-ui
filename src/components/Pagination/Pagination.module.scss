@@ -1,0 +1,38 @@
+.pagination {
+    display: flex;
+}
+
+.page-item {
+    border-radius: 4px;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    background: var(--color-white);
+    border: 1px solid #ddd;
+    text-align: center;
+    margin: 5px;
+    cursor: pointer;
+    transition: 0.5s;
+    user-select: none;
+
+    &:hover {
+        border: 1px solid var(--primary);
+    }
+}
+
+.page-link {
+    color: var(--color-black);
+    display: block;
+    transition: 0.5s;
+
+    &:hover {
+        color: var(--primary);
+    }
+}
+
+.active {
+    border: 1px solid var(--primary);
+    .page-link {
+        color: var(--primary);
+    }
+}

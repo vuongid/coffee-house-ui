@@ -1,9 +1,10 @@
 import classNames from 'classnames/bind';
 import { toast } from 'react-toastify';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
 import config from '~/config';
+import Pagination from '~/components/Pagination';
 import styles from './ProductList.module.scss';
 import { deleteProduct, getProductList } from '~/services/productService';
 
@@ -11,6 +12,11 @@ const cx = classNames.bind(styles);
 
 function ProductList() {
     const [products, setProducts] = useState([]);
+    const [currentPage, setCurrentPage] = useState(0);
+    const perPage = 5;
+    const pageCount = Math.ceil(products.length / perPage);
+    const tableRef = useRef(null);
+
     const navigate = useNavigate();
     useEffect(() => {
         const fetchApi = async () => {
@@ -33,11 +39,18 @@ function ProductList() {
         navigate(slug);
     };
 
+    function handlePageClick({ selected: selectedPage }) {
+        window.scrollTo({
+            top: tableRef.current.offsetTop,
+        });
+        setCurrentPage(selectedPage);
+    }
+
     return (
         <div>
             <h1>Quản Lý Danh Mục</h1>
             <Link to="add">thêm sản phẩm</Link>
-            <table className={cx('table')}>
+            <table className={cx('table')} ref={tableRef}>
                 <thead>
                     <tr>
                         <th>#</th>
@@ -51,11 +64,15 @@ function ProductList() {
                     </tr>
                 </thead>
                 <tbody>
-                    {products?.map((product, index) => (
+                    {products.slice(currentPage * perPage, (currentPage + 1) * perPage).map((product, index) => (
                         <tr key={index}>
-                            <td>{index + 1}</td>
+                            <td>{currentPage * perPage + index + 1}</td>
                             <td>
-                                <img src={config.IMAGES_URL.productImage + product.image} alt="" style={{ width: '100px' }} />
+                                <img
+                                    src={config.IMAGES_URL.productImage + product.image}
+                                    alt=""
+                                    style={{ width: '100px' }}
+                                />
                             </td>
                             <td>{product.name}</td>
                             <td>{product.description}</td>
@@ -75,6 +92,9 @@ function ProductList() {
                     ))}
                 </tbody>
             </table>
+            <div className={cx('pagination')}>
+                <Pagination pageCount={pageCount} onPageChange={handlePageClick} />
+            </div>
         </div>
     );
 }
