@@ -31,11 +31,7 @@ function AdminLayout({ children }) {
                             <img src={images.logo} alt="Coffee House" className={cx('logo-img')} />
                         </Link>{' '}
                         <div className={cx('navbar')}>
-                            {navbar.map((item, index) => (
-                                <Navbar key={index} to={item.to}>
-                                    {item.title}
-                                </Navbar>
-                            ))}
+                            <Navbar navbar={navbar} />
                         </div>
                         <div className={cx('user')}>
                             <div className={cx('logout')} onClick={handleLogout}>

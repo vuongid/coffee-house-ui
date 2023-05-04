@@ -2,15 +2,6 @@
     display: flex;
     align-items: center;
     font-weight: 600;
-    &:hover {
-        color: var(--primary);
-        .nav-link {
-            color: var(--primary);
-        }
-        .drop-menu {
-            display: flex;
-        }
-    }
 }
 
 .nav-item-vertical {
@@ -53,8 +44,8 @@
 // Drop menu
 .drop-menu {
     position: absolute;
-    display: none;
-    top: 99%;
+    display: flex;
+    top: 150%;
     left: 0;
     right: 0;
     padding: 24px 15.4% 32px;
@@ -96,6 +87,7 @@
     border: 2px solid transparent;
 }
 
+// mobile & table
 @media (max-width: 1023px) {
     .nav-item,
     .nav-link {
@@ -108,18 +100,24 @@
 
     .nav-item {
         flex-direction: column;
-        &:hover {
-            .drop-menu {
-                display: block;
-                position: unset;
-                padding: 0;
-                width: 100%;
-            }
-            .drop-menu-vertical {
-                position: absolute;
-                padding: 8px 0;
-            }
-        }
+    }
+    .drop-icon {
+        padding: 5px;
+    }
+    .drop-menu {
+        display: none;
+        position: unset;
+        padding: 0;
+        width: 100%;
+    }
+
+    .active-drop {
+        display: block;
+    }
+
+    .drop-menu-vertical {
+        position: absolute;
+        padding: 8px 0;
     }
 
     .drop-link {
@@ -129,5 +127,28 @@
 
     .drop-link-vertical {
         padding: 8px 0;
+    }
+}
+
+// pc
+@media (min-width: 1024px) {
+    .drop-menu {
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.4s ease-out;
+    }
+
+    .nav-item:hover {
+        color: var(--primary);
+
+        .nav-link {
+            color: var(--primary);
+        }
+
+        .drop-menu {
+            top: 100%;
+            opacity: 1;
+            visibility: visible;
+        }
     }
 }

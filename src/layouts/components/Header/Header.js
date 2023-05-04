@@ -8,21 +8,16 @@ import { cartIcon, userIcon, barsIcon, closeIcon } from '~/components/Icons';
 import { memo, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { authLogout, mid } from '~/actions/auth';
+import { getAllCategory } from '~/services/categoryService';
 
 const cx = classNames.bind(styles);
-const navbar = [
+let navbar = [
     {
         title: 'Menu',
         to: '/menu',
-        sub: [
-            { title: 'Cà phê', to: '/menu/ca-phe' },
-            { title: 'CloudFee', to: '/menu/cloudfee' },
-            { title: 'CloudTea', to: '/menu/cloudtea' },
-            { title: 'Hi-Tea Heathy', to: '/menu/hi-tea-healthy' },
-            { title: 'Trà Trái Cây - Trà Sữa', to: '/menu/tra-trai-cay-tra-sua' },
-            { title: 'Tại Nhà', to: '/menu/thuong-thuc-tai-nha' },
-        ],
+        sub: [],
     },
+
     {
         title: 'Chuyện Nhà',
         to: '/blog',
@@ -68,7 +63,7 @@ const activeNavbarUser = [
 ];
 
 function Header() {
-    const [showNavRight, setShowNavRight] = useState(false);
+    const [showNavLeft, setShowNavLeft] = useState(false);
     const totalQuantity = useSelector((state) => state.cart?.totalQuantity);
     const { isLogin, user, token } = useSelector((state) => state.auth);
 
@@ -78,6 +73,15 @@ function Header() {
         if (token) {
             dispatch(mid(token));
         }
+        const fetchApi = async () => {
+            const res = await getAllCategory();
+            const sub = res.map((item) => ({
+                title: item.name,
+                to: `/menu/${item.slug}`,
+            }));
+            navbar[0].sub = sub;
+        };
+        fetchApi();
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
@@ -103,7 +107,7 @@ function Header() {
                     <div
                         className={cx('bars-icon')}
                         onClick={() => {
-                            setShowNavRight(true);
+                            setShowNavLeft(true);
                         }}
                     >
                         {barsIcon}
@@ -113,51 +117,23 @@ function Header() {
                         <img src={images.logo} alt="Coffee House" className={cx('logo')} />
                     </Link>
                     {/* Navbar */}
-                    <div className={cx('navbar', { show: showNavRight })}>
+                    <div className={cx('navbar', { show: showNavLeft })}>
                         <div>
-                            <span className={cx('close-icon')} onClick={() => setShowNavRight(false)}>
+                            <span className={cx('close-icon')} onClick={() => setShowNavLeft(false)}>
                                 {closeIcon}
                             </span>
                         </div>
-                        {navbar.map((navbar, index) => {
-                            return (
-                                <Navbar key={index} to={navbar.to} sub={navbar.sub}>
-                                    {navbar.title}
-                                </Navbar>
-                            );
-                        })}
+                        <Navbar navbar={navbar} />
                     </div>
-                    {showNavRight && (
-                        <div className={cx('navbar-overlay')} onClick={() => setShowNavRight(false)}></div>
-                    )}
+                    {showNavLeft && <div className={cx('navbar-overlay')} onClick={() => setShowNavLeft(false)}></div>}
                     {/* user */}
                     {isLogin ? (
                         <div className={cx('navbar-user')}>
-                            {activeNavbarUser.map((navbar, index) => {
-                                return (
-                                    <Navbar
-                                        key={index}
-                                        to={navbar.to}
-                                        icon={navbar.icon}
-                                        qty={navbar.qty}
-                                        onClick={navbar.onClick}
-                                        sub={navbar.sub}
-                                        vertical
-                                    >
-                                        {navbar.title}
-                                    </Navbar>
-                                );
-                            })}
+                            <Navbar navbar={activeNavbarUser} vertical />
                         </div>
                     ) : (
                         <div className={cx('navbar-user')}>
-                            {navbarUser.map((navbar, index) => {
-                                return (
-                                    <Navbar key={index} to={navbar.to} icon={navbar.icon} qty={navbar.qty}>
-                                        {navbar.title}
-                                    </Navbar>
-                                );
-                            })}
+                            <Navbar navbar={navbarUser} />
                         </div>
                     )}
                 </div>
