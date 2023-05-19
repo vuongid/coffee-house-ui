@@ -4,6 +4,7 @@ import styles from './Blog.module.scss';
 import { useEffect, useState } from 'react';
 import { getHomeBlogs } from '~/services/blogService';
 import BlogCard from '~/components/BlogCard/BlogCard';
+import images from '~/assets/images';
 
 const cx = classNames.bind(styles);
 
@@ -20,11 +21,7 @@ function Blog() {
     return (
         <div className={cx('wrapper')}>
             <h2 className={cx('title')}>
-                <img
-                    className={cx('title-img')}
-                    src="https://file.hstatic.net/1000075078/file/coffee-2_2_92db24958ff14ac4b4249b3256f7a415.png"
-                    alt=""
-                />
+                <img className={cx('title-img')} src={images.iconBlog} alt="" />
                 Chuyện Nhà
             </h2>
             {listBlog &&

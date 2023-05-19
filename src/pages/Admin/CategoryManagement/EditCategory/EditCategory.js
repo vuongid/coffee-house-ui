@@ -40,7 +40,7 @@ function EditCategory() {
     };
 
     if (!category) {
-        return <div>Loading...</div>;
+        return <div className={cx('loader')} />;
     }
 
     return (

@@ -7,6 +7,7 @@ import BlogCard from '~/components/BlogCard';
 import Pagination from '~/components/Pagination/Pagination';
 import styles from './Blogs.module.scss';
 import { getBlogsBySlug, getHomeBlogs, getNewBlogs } from '~/services/blogService';
+import images from '~/assets/images';
 
 const cx = classNames.bind(styles);
 
@@ -119,11 +120,7 @@ function Blog() {
                             <div className={cx('row')}>
                                 <div className={cx('col l-5 m-5 c-12')}>
                                     <div className={cx('featured_img')}>
-                                        <img
-                                            className={cx('img')}
-                                            src="https://file.hstatic.net/1000075078/file/photo_2021-11-25_09-31-52_52c6f13fcc06433db2362281059d1c09.jpg"
-                                            alt=""
-                                        />
+                                        <img className={cx('img')} src={images.coffeeholic} alt="" />
                                     </div>
                                 </div>
                                 <div className={cx('col l-7 m-7 c-12')}>
@@ -158,11 +155,7 @@ function Blog() {
                                 </div>
                                 <div className={cx('col l-5 m-5 c-12', 'featured')}>
                                     <div className={cx('featured_img')}>
-                                        <img
-                                            className={cx('img')}
-                                            src="https://file.hstatic.net/1000075078/file/teaholic_3f320cac87814da0912f45ccfebd4e0e.jpg"
-                                            alt=""
-                                        />
+                                        <img className={cx('img')} src={images.teaholic} alt="" />
                                     </div>
                                 </div>
                             </div>
@@ -173,11 +166,7 @@ function Blog() {
                             <div className={cx('row')}>
                                 <div className={cx('col l-5 m-5 c-12')}>
                                     <div className={cx('featured_img')}>
-                                        <img
-                                            className={cx('img')}
-                                            src="https://file.hstatic.net/1000075078/file/blog_94b05e56224646bc86c6e72c73ac4258.jpg"
-                                            alt=""
-                                        />
+                                        <img className={cx('img')} src={images.blog} alt="" />
                                     </div>
                                 </div>
                                 <div className={cx('col l-7 m-7 c-12')}>

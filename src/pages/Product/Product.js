@@ -72,7 +72,7 @@ function Product() {
     };
 
     if (!product) {
-        return <div>loading</div>;
+        return <div className={cx('loader')} />;
     }
 
     return (

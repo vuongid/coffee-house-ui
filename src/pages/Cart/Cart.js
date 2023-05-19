@@ -12,6 +12,7 @@ import styles from './Cart.module.scss';
 import { updateCart } from '~/actions/cart';
 import { Link } from 'react-router-dom';
 import formatPrice from '~/utils/formatPrice';
+import images from '~/assets/images';
 
 const cx = classNames.bind(styles);
 
@@ -172,11 +173,7 @@ function Cart() {
                             {'< Menu'}
                         </Link>
                         <div className={cx('image-cart')}>
-                            <img
-                                className={cx('cart-null')}
-                                src="https://theme.hstatic.net/200000268973/1000665768/14/empty-cart_large.png"
-                                alt=""
-                            />
+                            <img className={cx('cart-null')} src={images.cartEmpty} alt="" />
                         </div>
                     </>
                 )}

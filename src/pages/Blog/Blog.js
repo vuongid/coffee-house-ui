@@ -22,7 +22,7 @@ function Blog() {
     }, [id]);
 
     if (!blog) {
-        return <div>loading</div>;
+        return <div className={cx('loader')} />;
     }
 
     return (

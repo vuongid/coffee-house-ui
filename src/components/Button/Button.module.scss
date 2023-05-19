@@ -52,11 +52,12 @@
         background-color: var(--color-white);
         transition: transform 300ms ease-in-out;
         transform: scaleX(0);
-        transform-origin: left;
+        transform-origin: right;
     }
 
     &:hover::before {
         transform: scale(1);
+        transform-origin: left;
     }
 }
 

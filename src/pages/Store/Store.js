@@ -9,6 +9,7 @@ import styles from './Store.module.scss';
 import { facebookIcon, messageIcon, shareIcon } from '~/components/Icons';
 import { getLocations } from '~/services/locationService';
 import { getStoreBySlug } from '~/services/storeService';
+import images from '~/assets/images';
 
 const cx = classNames.bind(styles);
 
@@ -36,10 +37,7 @@ function Store() {
         <>
             <div className={cx('banner')}>
                 <div className={cx('banner-img')}>
-                    <img
-                        src="https://file.hstatic.net/1000075078/file/untitled_design_64d7e90f1ee04cdaa5fa3ae45c4cf56b.png"
-                        alt=""
-                    />
+                    <img src={images.bnStore} alt="" />
                 </div>
                 <h2 className={cx('banner-text')}>Hệ thống cửa hàng The Coffee House toàn quốc</h2>
             </div>
